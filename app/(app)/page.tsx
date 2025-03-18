@@ -56,22 +56,22 @@ export default function SinkPage() {
       <ComponentWrapper name="accordion">
         <AccordionDemo />
       </ComponentWrapper>
-      <ComponentWrapper name="alert">
+      {/* <ComponentWrapper name="alert">
         <AlertDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="alert-dialog">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="alert-dialog">
         <AlertDialogDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="aspect-ratio">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="aspect-ratio">
         <AspectRatioDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="avatar">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="avatar">
         <AvatarDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="badge">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="badge">
         <BadgeDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="breadcrumb">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="breadcrumb">
         <BreadcrumbDemo />
       </ComponentWrapper>
       <ComponentWrapper name="button">
@@ -79,8 +79,8 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="calendar">
         <CalendarDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="card">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="card">
         <CardDemo />
       </ComponentWrapper>
       <ComponentWrapper name="carousel">
@@ -142,8 +142,8 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="progress">
         <ProgressDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="radio-group">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="radio-group">
         <RadioGroupDemo />
       </ComponentWrapper>
       <ComponentWrapper name="resizable">
@@ -190,7 +190,7 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="tooltip">
         <TooltipDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
     </div>
   )
 }
