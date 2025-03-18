@@ -65,13 +65,13 @@ export default function SinkPage() {
       {/* <ComponentWrapper name="aspect-ratio">
         <AspectRatioDemo />
       </ComponentWrapper> */}
-      <ComponentWrapper name="avatar">
+      {/* <ComponentWrapper name="avatar">
         <AvatarDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="badge">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="badge">
         <BadgeDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="breadcrumb">
+      </ComponentWrapper> */}
+      {/* <ComponentWrapper name="breadcrumb">
         <BreadcrumbDemo />
       </ComponentWrapper>
       <ComponentWrapper name="button">
@@ -79,7 +79,7 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="calendar">
         <CalendarDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
       <ComponentWrapper name="card">
         <CardDemo />
       </ComponentWrapper>
