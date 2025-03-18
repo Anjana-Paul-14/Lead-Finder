@@ -80,7 +80,7 @@ export default function SinkPage() {
       <ComponentWrapper name="calendar">
         <CalendarDemo />
       </ComponentWrapper> */}
-      <ComponentWrapper name="card">
+      {/* <ComponentWrapper name="card">
         <CardDemo />
       </ComponentWrapper>
       <ComponentWrapper name="carousel">
@@ -142,7 +142,7 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="progress">
         <ProgressDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
       <ComponentWrapper name="radio-group">
         <RadioGroupDemo />
       </ComponentWrapper>
