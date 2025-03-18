@@ -143,7 +143,7 @@ export default function SinkPage() {
       <ComponentWrapper name="progress">
         <ProgressDemo />
       </ComponentWrapper> */}
-      <ComponentWrapper name="radio-group">
+      {/* <ComponentWrapper name="radio-group">
         <RadioGroupDemo />
       </ComponentWrapper>
       <ComponentWrapper name="resizable">
@@ -190,7 +190,7 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="tooltip">
         <TooltipDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
     </div>
   )
 }
