@@ -65,9 +65,9 @@ export default function SinkPage() {
       <ComponentWrapper name="aspect-ratio">
         <AspectRatioDemo />
       </ComponentWrapper>
-      {/* <ComponentWrapper name="avatar">
+      <ComponentWrapper name="avatar">
         <AvatarDemo />
-      </ComponentWrapper> */}
+      </ComponentWrapper>
       {/* <ComponentWrapper name="badge">
         <BadgeDemo />
       </ComponentWrapper> */}
