@@ -62,9 +62,9 @@ export default function SinkPage() {
       <ComponentWrapper name="alert-dialog">
         <AlertDialogDemo />
       </ComponentWrapper> */}
-      {/* <ComponentWrapper name="aspect-ratio">
+      <ComponentWrapper name="aspect-ratio">
         <AspectRatioDemo />
-      </ComponentWrapper> */}
+      </ComponentWrapper>
       {/* <ComponentWrapper name="avatar">
         <AvatarDemo />
       </ComponentWrapper> */}
