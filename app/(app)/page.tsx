@@ -56,12 +56,12 @@ export default function SinkPage() {
       <ComponentWrapper name="accordion">
         <AccordionDemo />
       </ComponentWrapper>
-      <ComponentWrapper name="alert">
+      {/* <ComponentWrapper name="alert">
         <AlertDemo />
       </ComponentWrapper>
       <ComponentWrapper name="alert-dialog">
         <AlertDialogDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
       {/* <ComponentWrapper name="aspect-ratio">
         <AspectRatioDemo />
       </ComponentWrapper> */}
