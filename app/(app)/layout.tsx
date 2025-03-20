@@ -33,6 +33,7 @@ export default async function AppLayout({
             <NavHeader />
             <div className="ml-auto flex items-center gap-2">
               <ThemeSelector />
+              {/* <p>fffffff</p> */}
               <ModeSwitcher />
             </div>
           </div>
