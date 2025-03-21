@@ -15,7 +15,7 @@ export function ThemeSelector() {
 
   return (
     <Select value={activeTheme} onValueChange={setActiveTheme}>
-      <SelectTrigger size="sm" className="w-32">
+      <SelectTrigger size="sm" className="w-32 border-5 border-red-300">
         <SelectValue placeholder="Select a theme" />
       </SelectTrigger>
       <SelectContent align="end">
