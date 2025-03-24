@@ -32,8 +32,11 @@ export default async function AppLayout({
             />
             <NavHeader />
             <div className="ml-auto flex items-center gap-2 border-4 border-purple-500">
-              <ThemeSelector />
-              <p>fffffff</p>
+              {/* <ThemeSelector /> */}
+              {/* <p>fffffff</p> */}
+              <div>
+              <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">5</button>
+              </div>
               <ModeSwitcher />
             </div>
           </div>
