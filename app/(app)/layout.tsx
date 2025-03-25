@@ -11,6 +11,7 @@ import {
   SidebarTrigger,
 } from "@/registry/new-york-v4/ui/sidebar"
 import { CreditButton } from "@/components/credit-button"
+import { Profile } from "@/components/profile"
 
 export default async function AppLayout({
   children,
@@ -40,6 +41,7 @@ export default async function AppLayout({
               <CreditButton/>
               </div>
               <ModeSwitcher />
+              <Profile/>
             </div>
           </div>
         </header>
