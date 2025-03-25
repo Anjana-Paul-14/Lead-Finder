@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/registry/new-york-v4/ui/a
 
 export  function Profile() {
   return (
-    <Avatar className='border-4 border-red-500'>
-        <AvatarImage src='https://github.com/shadcn.png'/>
+    <Avatar className=''>
+        <AvatarImage src='https://github.com/shadcn.png' className='rounded-full'/>
         <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   )
