@@ -1,7 +1,7 @@
 
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/registry/new-york-v4/ui/avatar'
-import { DropdownMenu, DropdownMenuTrigger } from '@/registry/new-york-v4/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/registry/new-york-v4/ui/dropdown-menu'
 
 export  function Profile() {
   return (
