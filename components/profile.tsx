@@ -1,11 +1,19 @@
+
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/registry/new-york-v4/ui/avatar'
+import { DropdownMenu, DropdownMenuTrigger } from '@/registry/new-york-v4/ui/dropdown-menu'
 
 export  function Profile() {
   return (
+<DropdownMenu>
+  <DropdownMenuTrigger>
+
     <Avatar className=''>
         <AvatarImage src='https://github.com/shadcn.png' className='rounded-full'/>
         <AvatarFallback>CN</AvatarFallback>
     </Avatar>
+  </DropdownMenuTrigger>
+</DropdownMenu>
   )
 }
 
