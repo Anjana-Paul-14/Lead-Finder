@@ -5,6 +5,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/registry/new-york-v4/ui/a
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/registry/new-york-v4/ui/dropdown-menu'
 
 export  function Profile() {
+
+const onSettings = () =>{
+  console.log("Settings Clicked")
+}
+
   return (
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
@@ -15,7 +20,7 @@ export  function Profile() {
     </Avatar>
   </DropdownMenuTrigger>
   <DropdownMenuContent className="w-40">
-         <DropdownMenuItem onClick={() => console.log("Settings Clicked")}>
+         <DropdownMenuItem onClick={onSettings}>
            Settings
          </DropdownMenuItem>
          <DropdownMenuItem onClick={() => console.log("Logout Clicked")}>
