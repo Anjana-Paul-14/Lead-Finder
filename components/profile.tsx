@@ -8,7 +8,7 @@ export  function Profile() {
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
 
-    <Avatar className=''>
+    <Avatar className='w-12 h-12 cursor-pointer'>
         <AvatarImage src='https://github.com/shadcn.png' className='rounded-full'/>
         <AvatarFallback>CN</AvatarFallback>
     </Avatar>
