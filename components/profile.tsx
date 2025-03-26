@@ -10,6 +10,10 @@ const onSettings = () =>{
   console.log("Settings Clicked")
 }
 
+const handleLogout = () =>{
+  console.log('logout')
+}
+
   return (
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
@@ -23,7 +27,7 @@ const onSettings = () =>{
          <DropdownMenuItem onClick={onSettings}>
            Settings
          </DropdownMenuItem>
-         <DropdownMenuItem onClick={() => console.log("Logout Clicked")}>
+         <DropdownMenuItem onClick={handleLogout}>
            Logout
          </DropdownMenuItem>
        </DropdownMenuContent>
