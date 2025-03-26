@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 export  function Profile() {
   return (
 <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenuTrigger asChild>
 
     <Avatar className=''>
         <AvatarImage src='https://github.com/shadcn.png' className='rounded-full'/>
