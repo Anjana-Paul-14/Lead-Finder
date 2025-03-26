@@ -13,6 +13,14 @@ export  function Profile() {
         <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-40">
+         <DropdownMenuItem onClick={() => console.log("Settings Clicked")}>
+           Settings
+         </DropdownMenuItem>
+         <DropdownMenuItem onClick={() => console.log("Logout Clicked")}>
+           Logout
+         </DropdownMenuItem>
+       </DropdownMenuContent>
 </DropdownMenu>
   )
 }
