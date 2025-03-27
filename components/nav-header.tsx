@@ -26,11 +26,11 @@ export function NavHeader() {
             <Link href="/charts">List</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        {/* <NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuLink asChild data-active={pathname === "/forms"}>
             <Link href="/forms">Forms</Link>
           </NavigationMenuLink>
-        </NavigationMenuItem> */}
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )
