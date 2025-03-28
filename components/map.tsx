@@ -1,5 +1,5 @@
 'use client'
-
+import { useState } from 'react';
 import {LoadScript, GoogleMap, Marker} from '@react-google-maps/api'
 
 
@@ -14,6 +14,9 @@ const containerStyle = {
   };
 
 export const Map = () => {
+
+    const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
+
   return (
     <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
