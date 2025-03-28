@@ -17,9 +17,7 @@ export const Map = () => {
   return (
     <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-            <Marker>
-
-            </Marker>
+            <Marker position={center}/>
         </GoogleMap>
     </LoadScript>
   )
