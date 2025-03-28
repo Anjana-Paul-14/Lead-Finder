@@ -51,7 +51,7 @@ import { Map } from "@/components/map"
 export default function SinkPage() {
   return (
     <div className="@container grid flex-1 gap-4 p-4">
-      <ComponentWrapper name="Location">
+      <ComponentWrapper name="map">
         <Map/>
       </ComponentWrapper>
       <ComponentWrapper name="chart" className="w-full">
