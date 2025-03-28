@@ -1,6 +1,7 @@
 import { AccordionDemo } from "@/components/accordion-demo"
 import { ChartDemo } from "@/components/chart-demo"
 import { ComponentWrapper } from "@/components/component-wrapper"
+import { Map } from "@/components/map"
 // import { AlertDemo } from "@/components/alert-demo"
 // import { AlertDialogDemo } from "@/components/alert-dialog-demo"
 // import { AspectRatioDemo } from "@/components/aspect-ratio-demo"
@@ -50,12 +51,15 @@ import { ComponentWrapper } from "@/components/component-wrapper"
 export default function SinkPage() {
   return (
     <div className="@container grid flex-1 gap-4 p-4">
-      <ComponentWrapper name="chart" className="w-full">
+      <ComponentWrapper name="map">
+        <Map/>
+      </ComponentWrapper>
+      {/* <ComponentWrapper name="chart" className="w-full">
         <ChartDemo />
       </ComponentWrapper>
       <ComponentWrapper name="accordion">
         <AccordionDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
       {/* <ComponentWrapper name="alert">
         <AlertDemo />
       </ComponentWrapper>
