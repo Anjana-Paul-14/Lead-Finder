@@ -37,9 +37,15 @@ export const Map = () => {
 
   return (
     <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
-        <GoogleMap mapContainerStyle={containerStyle}  zoom={10}>
-            <Marker />
+
+        {currentLocation ? (
+        <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
+            <Marker position={currentLocation}/>
         </GoogleMap>
+        ):(
+            <p>Loading map...</p>
+        )
+        }
     </LoadScript>
   )
 }
