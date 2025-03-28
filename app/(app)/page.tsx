@@ -54,12 +54,12 @@ export default function SinkPage() {
       <ComponentWrapper name="map">
         <Map/>
       </ComponentWrapper>
-      <ComponentWrapper name="chart" className="w-full">
+      {/* <ComponentWrapper name="chart" className="w-full">
         <ChartDemo />
       </ComponentWrapper>
       <ComponentWrapper name="accordion">
         <AccordionDemo />
-      </ComponentWrapper>
+      </ComponentWrapper> */}
       {/* <ComponentWrapper name="alert">
         <AlertDemo />
       </ComponentWrapper>
