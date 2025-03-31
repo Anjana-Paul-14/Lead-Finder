@@ -25,6 +25,7 @@ const containerStyle = {
 export const Map = () => {
 
     const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
+    const [searchQuery, setSearchQuery] = useState();
 
     useEffect(() => {
     if (navigator.geolocation) {
