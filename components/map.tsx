@@ -45,6 +45,25 @@ export const Map = () => {
     }
   }, []);
 
+  const handleSearch = async () => {
+    if (!currentLocation || !searchQuery) return;
+
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    
+    const request = {
+      location: new google.maps.LatLng(currentLocation.lat, currentLocation.lng),
+      radius: 5000, // Search within 5km radius
+      keyword: searchQuery,
+    };
+
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+        setPlaces(results);
+      }
+    });
+  };
+
+
   return (
     <div className='flex flex-col items-center w-full h-full border-4 border-amber-300'>
     {/* <> */}
