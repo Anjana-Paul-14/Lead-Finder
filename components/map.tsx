@@ -99,7 +99,7 @@ export const Map = () => {
         </Command>
         </div>
 <div className='pl-4'>
-    <Button>
+    <Button onClick={handleSearch}>
 Search
     </Button>
 </div>
