@@ -85,7 +85,9 @@ export const Map = () => {
     <div className='flex flex-row items-center py-8'>
         <div className='w-100 '>
         <Command>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Type a command or search..." 
+        value={searchQuery}
+        onValueChange={setSearchQuery} />
         {/* <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
     <CommandGroup heading="Suggestions">
