@@ -83,11 +83,10 @@ export const Map = () => {
         console.error("Error fetching places:", status);
       }
     });
-
-
   };
 
-
+  if (loadError) return <p>Error loading maps</p>;
+  if (!isLoaded) return <p>Loading maps...</p>;
 
   return (
     <div className='flex flex-col items-center w-full h-full border-4 border-amber-300'>
