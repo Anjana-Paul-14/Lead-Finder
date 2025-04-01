@@ -9,6 +9,8 @@ import { Command, CommandDialog , CommandInput,
     CommandShortcut,
     CommandSeparator} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
+
 
 
 
@@ -104,7 +106,28 @@ Search
     </Button>
 </div>
     </div>
-    {/* </> */}
+    {places.length > 0 && (
+        <div className="w-full px-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Address</TableHead>
+                <TableHead>Rating</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {places.map((place) => (
+                <TableRow key={place.place_id}>
+                  <TableCell>{place.name}</TableCell>
+                  <TableCell>{place.vicinity}</TableCell>
+                  <TableCell>{place.rating || "N/A"}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
      </div>
   )
 }
