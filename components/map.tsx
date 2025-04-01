@@ -31,6 +31,12 @@ export const Map = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [places, setPlaces] = useState<any[]>([]);
 
+    const { isLoaded, loadError } = useLoadScript({
+      googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
+      libraries, // Use the constant defined above
+    });
+  
+
     useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -52,7 +58,10 @@ export const Map = () => {
   const handleSearch = async () => {
     if (!currentLocation || !searchQuery) return;
 
-    
+    if (!isLoaded || !window.google || !window.google.maps || !window.google.maps.places) {
+      console.error("Google Maps Places API is not loaded yet.");
+      return;
+    }
 
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     
