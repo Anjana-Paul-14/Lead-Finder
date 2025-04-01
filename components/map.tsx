@@ -114,6 +114,7 @@ Search
                 <TableHead>Name</TableHead>
                 <TableHead>Address</TableHead>
                 <TableHead>Rating</TableHead>
+                <TableHead>Website Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -122,6 +123,7 @@ Search
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
+                  <TableCell>{place.website}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
