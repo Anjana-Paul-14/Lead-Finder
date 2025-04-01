@@ -1,13 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/api'
-import { Command, CommandDialog , CommandInput,
-    CommandList,
-    CommandEmpty,
-    CommandGroup,
-    CommandItem,
-    CommandShortcut,
-    CommandSeparator} from '@/registry/new-york-v4/ui/command';
+import { Command, CommandDialog , CommandInput,} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 
@@ -92,7 +86,7 @@ export const Map = () => {
     <div className='flex flex-col items-center w-full h-full border-4 border-amber-300'>
     {/* <> */}
     <div className='w-full flex justify-center pt-4'>
-    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
+    {/* <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}> */}
 
         {currentLocation ? (
         <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
@@ -102,7 +96,7 @@ export const Map = () => {
             <p>Loading map...</p>
         )
         }
-    </LoadScript>
+    {/* </LoadScript> */}
     </div>
 
     <div className='flex flex-row items-center py-8'>
