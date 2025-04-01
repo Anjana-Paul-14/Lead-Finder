@@ -71,12 +71,22 @@ export const Map = () => {
       keyword: searchQuery,
     };
 
+    // service.nearbySearch(request, (results, status) => {
+    //   if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+    //     setPlaces(results);
+    //   }
+    // });
     service.nearbySearch(request, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
         setPlaces(results);
+      } else {
+        console.error("Error fetching places:", status);
       }
     });
+
+
   };
+
 
 
   return (
