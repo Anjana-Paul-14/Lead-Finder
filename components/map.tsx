@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
-import {LoadScript, GoogleMap, Marker} from '@react-google-maps/api'
+import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/api'
 import { Command, CommandDialog , CommandInput,
     CommandList,
     CommandEmpty,
@@ -12,13 +12,14 @@ import { Button } from '@/registry/new-york-v4/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 
 
-
-
 const containerStyle = {
     width: "100%",
     height: "60vh",
   };
   
+
+  const libraries: ("places")[] = ["places"];
+
 //   const center = {
 //     lat: 37.7749, 
 //     lng: -122.4194, 
@@ -50,6 +51,8 @@ export const Map = () => {
 
   const handleSearch = async () => {
     if (!currentLocation || !searchQuery) return;
+
+    
 
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     
@@ -114,7 +117,7 @@ Search
                 <TableHead>Name</TableHead>
                 <TableHead>Address</TableHead>
                 <TableHead>Rating</TableHead>
-                <TableHead>Website Status</TableHead>
+                {/* <TableHead>Website Status</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -123,7 +126,7 @@ Search
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
-                  <TableCell>{place.website}</TableCell>
+                  {/* <TableCell>{place.website}</TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
