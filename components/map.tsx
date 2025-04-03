@@ -129,7 +129,7 @@ Search
                 <TableHead>Name</TableHead>
                 <TableHead>Address</TableHead>
                 <TableHead>Rating</TableHead>
-                {/* <TableHead>Website Status</TableHead> */}
+                <TableHead>Website Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
