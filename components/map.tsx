@@ -171,7 +171,16 @@ Search
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
-                  <TableCell>{place.website}</TableCell>
+                  {/* <TableCell>{place.website}</TableCell> */}
+                  <TableCell>
+                                        {place.website !== "No Website" ? (
+                                            <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                                                Visit Website
+                                            </a>
+                                        ) : (
+                                            "No Website"
+                                        )}
+                                    </TableCell>
                 </TableRow>
               ))}
             </TableBody>
