@@ -70,13 +70,15 @@ export const Map = () => {
     //     setPlaces(results);
     //   }
     // });
-    service.nearbySearch(request, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-        setPlaces(results);
-      } else {
-        console.error("Error fetching places:", status);
-      }
-    });
+    
+    // service.nearbySearch(request, (results, status) => {
+    //   if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+    //     setPlaces(results);
+    //   } else {
+    //     console.error("Error fetching places:", status);
+    //   }
+    // });
+
   };
 
   if (loadError) return <p>Error loading maps</p>;
@@ -138,7 +140,7 @@ Search
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
-                  {/* <TableCell>{place.website}</TableCell> */}
+                  <TableCell>{place.website}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
