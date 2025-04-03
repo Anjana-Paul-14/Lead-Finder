@@ -70,7 +70,7 @@ export const Map = () => {
     //     setPlaces(results);
     //   }
     // });
-    
+
     // service.nearbySearch(request, (results, status) => {
     //   if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
     //     setPlaces(results);
@@ -78,8 +78,39 @@ export const Map = () => {
     //     console.error("Error fetching places:", status);
     //   }
     // });
+        service.nearbySearch(request, (results, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+                // Fetch website details for each place
+                const placesWithDetails = results.map((place) => getPlaceDetails(place, service));
+                Promise.all(placesWithDetails).then(setPlaces);
+            } else {
+                console.error("Error fetching places:", status);
+            }
+        });
 
   };
+
+  const getPlaceDetails = (place: any, service: any) => {
+    return new Promise((resolve) => {
+        service.getDetails({ placeId: place.place_id }, (details, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && details) {
+                resolve({
+                    name: details.name,
+                    vicinity: details.vicinity,
+                    rating: details.rating || "N/A",
+                    website: details.website || "No Website",
+                });
+            } else {
+                resolve({
+                    name: place.name,
+                    vicinity: place.vicinity,
+                    rating: place.rating || "N/A",
+                    website: "No Website",
+                });
+            }
+        });
+    });
+};
 
   if (loadError) return <p>Error loading maps</p>;
   if (!isLoaded) return <p>Loading maps...</p>;
