@@ -71,13 +71,13 @@ export const Map = () => {
     //   }
     // });
 
-    service.nearbySearch(request, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-        setPlaces(results);
-      } else {
-        console.error("Error fetching places:", status);
-      }
-    });
+    // service.nearbySearch(request, (results, status) => {
+    //   if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+    //     setPlaces(results);
+    //   } else {
+    //     console.error("Error fetching places:", status);
+    //   }
+    // });
         service.nearbySearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
                 // Fetch website details for each place
