@@ -92,7 +92,7 @@ export const Map = () => {
 
   const getPlaceDetails = (place: any, service: any) => {
     return new Promise((resolve) => {
-        service.getDetails({ placeId: place.place_id }, (d) => {
+        service.getDetails({ placeId: place.place_id }, (details, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK && details) {
                 resolve({
                     name: details.name,
