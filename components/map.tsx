@@ -138,14 +138,14 @@ export const Map = () => {
         <CommandInput placeholder="Type a command or search..." 
         value={searchQuery}
         onValueChange={setSearchQuery} />
-        <CommandList>
+        {/* <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
     <CommandGroup heading="Suggestions">
       <CommandItem>Calendar</CommandItem>
       <CommandItem>Search Emoji</CommandItem>
       <CommandItem>Calculator</CommandItem>
     </CommandGroup>
-        </CommandList>
+        </CommandList> */}
         </Command>
         </div>
 <div className='pl-4'>
