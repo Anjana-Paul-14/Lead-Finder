@@ -25,6 +25,11 @@ export const Map = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [places, setPlaces] = useState<any[]>([]);
 
+
+// Pagination
+const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 5;
+
     const { isLoaded, loadError } = useLoadScript({
       googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
       libraries, // Use the constant defined above
