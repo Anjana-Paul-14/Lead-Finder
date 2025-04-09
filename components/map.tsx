@@ -4,6 +4,7 @@ import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/a
 import { Command, CommandDialog , CommandInput,} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
+import { Pagination } from '@/registry/new-york-v4/ui/pagination';
 
 
 const containerStyle = {
