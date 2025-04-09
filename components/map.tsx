@@ -89,6 +89,7 @@ const itemsPerPage = 5;
                 // Fetch website details for each place
                 const placesWithDetails = results.map((place) => getPlaceDetails(place, service));
                 Promise.all(placesWithDetails).then(setPlaces);
+                setCurrentPage(1); // Reset to first page after search
             } else {
                 console.error("Error fetching places:", status);
             }
