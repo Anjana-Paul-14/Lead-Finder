@@ -106,6 +106,7 @@ const itemsPerPage = 5;
                     vicinity: details.vicinity,
                     rating: details.rating || "N/A",
                     website: details.website || "No Website",
+                    place_id: details.place_id,
                 });
             } else {
                 resolve({
@@ -113,6 +114,7 @@ const itemsPerPage = 5;
                     vicinity: place.vicinity,
                     rating: place.rating || "N/A",
                     website: "No Website",
+                    place_id: details.place_id,
                 });
             }
         });
@@ -121,6 +123,14 @@ const itemsPerPage = 5;
 
   if (loadError) return <p>Error loading maps</p>;
   if (!isLoaded) return <p>Loading maps...</p>;
+
+  // Pagination logic
+  const totalPages = Math.ceil(places.length / itemsPerPage);
+  const paginatedPlaces = places.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
 
   return (
     <div className='flex flex-col items-center w-full h-full border-4 border-amber-300'>
