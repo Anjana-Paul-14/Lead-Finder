@@ -4,7 +4,7 @@ import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/a
 import { Command, CommandDialog , CommandInput,} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
-import { Pagination } from '@/registry/new-york-v4/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
 
 
 const containerStyle = {
@@ -183,12 +183,11 @@ Search
               </TableRow>
             </TableHeader>
             <TableBody>
-              {places.map((place) => (
+              {/* {places.map((place) => (
                 <TableRow key={place.place_id}>
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
-                  {/* <TableCell>{place.website}</TableCell> */}
                   <TableCell>
                                         {place.website !== "No Website" ? (
                                             <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
@@ -199,9 +198,83 @@ Search
                                         )}
                                     </TableCell>
                 </TableRow>
+              ))} */}
+              {paginatedPlaces.map((place) => (
+                <TableRow key={place.place_id}>
+                  <TableCell>{place.name}</TableCell>
+                  <TableCell>{place.vicinity}</TableCell>
+                  <TableCell>{place.rating}</TableCell>
+                  <TableCell>
+                    {place.website !== 'No Website' ? (
+                      <a
+                        href={place.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        Visit Website
+                      </a>
+                    ) : (
+                      'No Website'
+                    )}
+                  </TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
+
+ {/* Pagination Section */}
+ <Pagination className="mt-4">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+                  }}
+                  className={
+                    currentPage === 1
+                      ? 'pointer-events-none opacity-50'
+                      : ''
+                  }
+                />
+              </PaginationItem>
+
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href="#"
+                    isActive={currentPage === index + 1}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage(index + 1);
+                    }}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages)
+                      setCurrentPage((prev) => prev + 1);
+                  }}
+                  className={
+                    currentPage === totalPages
+                      ? 'pointer-events-none opacity-50'
+                      : ''
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+
+
         </div>
       )}
      </div>
