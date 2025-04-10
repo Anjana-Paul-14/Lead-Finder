@@ -4,6 +4,7 @@ import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/a
 import { Command, CommandDialog , CommandInput,} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
 
 
 const containerStyle = {
@@ -24,6 +25,11 @@ export const Map = () => {
     const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [places, setPlaces] = useState<any[]>([]);
+
+
+// Pagination
+const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 5;
 
     const { isLoaded, loadError } = useLoadScript({
       googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
@@ -83,6 +89,7 @@ export const Map = () => {
                 // Fetch website details for each place
                 const placesWithDetails = results.map((place) => getPlaceDetails(place, service));
                 Promise.all(placesWithDetails).then(setPlaces);
+                setCurrentPage(1); // Reset to first page after search
             } else {
                 console.error("Error fetching places:", status);
             }
@@ -99,6 +106,7 @@ export const Map = () => {
                     vicinity: details.vicinity,
                     rating: details.rating || "N/A",
                     website: details.website || "No Website",
+                    place_id: details.place_id,
                 });
             } else {
                 resolve({
@@ -106,6 +114,7 @@ export const Map = () => {
                     vicinity: place.vicinity,
                     rating: place.rating || "N/A",
                     website: "No Website",
+                    place_id: details.place_id,
                 });
             }
         });
@@ -114,6 +123,14 @@ export const Map = () => {
 
   if (loadError) return <p>Error loading maps</p>;
   if (!isLoaded) return <p>Loading maps...</p>;
+
+  // Pagination logic
+  const totalPages = Math.ceil(places.length / itemsPerPage);
+  const paginatedPlaces = places.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
 
   return (
     <div className='flex flex-col items-center w-full h-full border-4 border-amber-300'>
@@ -166,12 +183,11 @@ Search
               </TableRow>
             </TableHeader>
             <TableBody>
-              {places.map((place) => (
+              {/* {places.map((place) => (
                 <TableRow key={place.place_id}>
                   <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating || "N/A"}</TableCell>
-                  {/* <TableCell>{place.website}</TableCell> */}
                   <TableCell>
                                         {place.website !== "No Website" ? (
                                             <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
@@ -182,9 +198,83 @@ Search
                                         )}
                                     </TableCell>
                 </TableRow>
+              ))} */}
+              {paginatedPlaces.map((place) => (
+                <TableRow key={place.place_id}>
+                  <TableCell>{place.name}</TableCell>
+                  <TableCell>{place.vicinity}</TableCell>
+                  <TableCell>{place.rating}</TableCell>
+                  <TableCell>
+                    {place.website !== 'No Website' ? (
+                      <a
+                        href={place.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 underline"
+                      >
+                        Visit Website
+                      </a>
+                    ) : (
+                      'No Website'
+                    )}
+                  </TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
+
+ {/* Pagination Section */}
+ <Pagination className="mt-4">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+                  }}
+                  className={
+                    currentPage === 1
+                      ? 'pointer-events-none opacity-50'
+                      : ''
+                  }
+                />
+              </PaginationItem>
+
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href="#"
+                    isActive={currentPage === index + 1}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage(index + 1);
+                    }}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages)
+                      setCurrentPage((prev) => prev + 1);
+                  }}
+                  className={
+                    currentPage === totalPages
+                      ? 'pointer-events-none opacity-50'
+                      : ''
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+
+
         </div>
       )}
      </div>
