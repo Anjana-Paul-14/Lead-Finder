@@ -4,6 +4,6 @@ import React from 'react'
 
 export const CreditContext = () => {
   return (
-    <div>CreditContextttttt</div>
+    <div>CreditContext</div>
   )
 }
