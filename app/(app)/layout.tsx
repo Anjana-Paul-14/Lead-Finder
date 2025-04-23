@@ -5,6 +5,7 @@ import { ModeSwitcher } from "@/components/mode-switcher"
 import { NavHeader } from "@/components/nav-header"
 import { ThemeSelector } from "@/components/theme-selector"
 import { Separator } from "@/registry/new-york-v4/ui/separator"
+import { CreditProvider } from '@/components/credit-context'
 import {
   SidebarInset,
   SidebarProvider,
@@ -22,6 +23,9 @@ export default async function AppLayout({
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
   return (
+    <CreditProvider>
+
+    
     <SidebarProvider defaultOpen={defaultOpen} >
       <AppSidebar />
       <SidebarInset>
@@ -48,5 +52,6 @@ export default async function AppLayout({
         {children}
       </SidebarInset>
     </SidebarProvider>
+    </CreditProvider>
   )
 }
