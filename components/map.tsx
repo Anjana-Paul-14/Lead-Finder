@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {useLoadScript, LoadScript, GoogleMap, Marker} from '@react-google-maps/api'
 import { Command, CommandDialog , CommandInput,} from '@/registry/new-york-v4/ui/command';
 import { Button } from '@/registry/new-york-v4/ui/button';
+import { useCredits } from '@/components/credit-context'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
 
@@ -22,6 +23,7 @@ const containerStyle = {
 
 export const Map = () => {
 
+  const { decrementCredits } = useCredits()
     const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [places, setPlaces] = useState<any[]>([]);
@@ -57,6 +59,8 @@ const itemsPerPage = 5;
 
   const handleSearch = async () => {
     if (!currentLocation || !searchQuery) return;
+
+    decrementCredits()
 
     if (!isLoaded || !window.google || !window.google.maps || !window.google.maps.places) {
       console.error("Google Maps Places API is not loaded yet.");
