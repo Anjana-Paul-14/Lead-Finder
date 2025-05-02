@@ -182,8 +182,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarHeader>
-      <SidebarContent>
-        {/* <SidebarGroup>
+      {/* <SidebarContent>
+        <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarMenu>
             {data.navMain.map((item) => (
@@ -218,7 +218,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </Collapsible>
             ))}
           </SidebarMenu>
-        </SidebarGroup> */}
+        </SidebarGroup>
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarMenu>
@@ -233,7 +233,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-      </SidebarContent>
+      </SidebarContent> */}
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
