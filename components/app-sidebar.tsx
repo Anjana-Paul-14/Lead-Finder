@@ -163,7 +163,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
         <SidebarGroup className="py-0 group-data-[collapsible=icon]:hidden">
@@ -182,7 +182,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarHeader>
-      <SidebarContent>
+      {/* <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarMenu>
@@ -233,8 +233,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter>
+      </SidebarContent> */}
+      <SidebarFooter style={{ marginTop: "auto" }}>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
