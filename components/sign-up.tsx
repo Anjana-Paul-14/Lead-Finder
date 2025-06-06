@@ -9,7 +9,7 @@ import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-export default function SignUp({
+export function SignUp({
   className,
   imageUrl,
   ...props
@@ -65,7 +65,7 @@ export default function SignUp({
                   
                   <div className="text-center text-sm">
                 Already have an account?{" "}
-                <a href="/login" className="underline underline-offset-4">
+                <a href="/" className="underline underline-offset-4">
                   Login
                 </a>
               </div>
