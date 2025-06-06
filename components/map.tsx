@@ -7,19 +7,13 @@ import { useCredits } from '@/components/credit-context'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
 
-
 const containerStyle = {
     width: "100%",
     height: "60vh",
   };
   
-
   const libraries: ("places")[] = ["places"];
 
-//   const center = {
-//     lat: 37.7749, 
-//     lng: -122.4194, 
-//   };
 
 export const Map = () => {
 
@@ -35,7 +29,7 @@ const itemsPerPage = 5;
 
     const { isLoaded, loadError } = useLoadScript({
       googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
-      libraries, // Use the constant defined above
+      libraries,
     });
   
 
@@ -71,23 +65,10 @@ const itemsPerPage = 5;
     
     const request = {
       location: new google.maps.LatLng(currentLocation.lat, currentLocation.lng),
-      radius: 5000, // Search within 5km radius
+      radius: 5000, 
       keyword: searchQuery,
     };
 
-    // service.nearbySearch(request, (results, status) => {
-    //   if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-    //     setPlaces(results);
-    //   }
-    // });
-
-    // service.nearbySearch(request, (results, status) => {
-    //   if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-    //     setPlaces(results);
-    //   } else {
-    //     console.error("Error fetching places:", status);
-    //   }
-    // });
         service.nearbySearch(request, (results, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
                 // Fetch website details for each place
@@ -98,7 +79,6 @@ const itemsPerPage = 5;
                 console.error("Error fetching places:", status);
             }
         });
-
   };
 
   const getPlaceDetails = (place: any, service: any) => {
@@ -125,8 +105,11 @@ const itemsPerPage = 5;
     });
 };
 
-  if (loadError) return <p>Error loading maps</p>;
-  if (!isLoaded) return <p>Loading maps...</p>;
+if (loadError) return <p>Error loading maps: {loadError.message}</p>;
+if (!isLoaded) {
+  console.log("Map not loaded yet...");
+  return <p>Loading maps...</p>;
+}
 
   // Pagination logic
   const totalPages = Math.ceil(places.length / itemsPerPage);
@@ -147,7 +130,7 @@ const itemsPerPage = 5;
             <Marker position={currentLocation}/>
         </GoogleMap>
         ):(
-            <p>Loading map...</p>
+            <p>Loading mappppp...</p>
         )
         }
     {/* </LoadScript> */}
@@ -159,14 +142,6 @@ const itemsPerPage = 5;
         <CommandInput placeholder="Type a command or search..." 
         value={searchQuery}
         onValueChange={setSearchQuery} />
-        {/* <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-    <CommandGroup heading="Suggestions">
-      <CommandItem>Calendar</CommandItem>
-      <CommandItem>Search Emoji</CommandItem>
-      <CommandItem>Calculator</CommandItem>
-    </CommandGroup>
-        </CommandList> */}
         </Command>
         </div>
 <div className='pl-4'>
@@ -187,22 +162,6 @@ Search
               </TableRow>
             </TableHeader>
             <TableBody>
-              {/* {places.map((place) => (
-                <TableRow key={place.place_id}>
-                  <TableCell>{place.name}</TableCell>
-                  <TableCell>{place.vicinity}</TableCell>
-                  <TableCell>{place.rating || "N/A"}</TableCell>
-                  <TableCell>
-                                        {place.website !== "No Website" ? (
-                                            <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                                                Visit Website
-                                            </a>
-                                        ) : (
-                                            "No Website"
-                                        )}
-                                    </TableCell>
-                </TableRow>
-              ))} */}
               {paginatedPlaces.map((place) => (
                 <TableRow key={place.place_id}>
                   <TableCell>{place.name}</TableCell>
@@ -277,8 +236,6 @@ Search
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-
-
         </div>
       )}
      </div>
