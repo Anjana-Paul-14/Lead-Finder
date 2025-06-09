@@ -22,6 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@/www/*": ["../www/*"],
+      "@/registry/*": ["apps/v4/registry/*"],
       "@/*": ["./*"],
       "react": ["./node_modules/@types/react"]
     }
