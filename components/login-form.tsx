@@ -64,8 +64,9 @@ router.push("/map");
                 </div>
                 <Input id="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={loading}>
+                {/* Login */}
+                {loading ? "Logging in..." : "Login"}
               </Button>
               
               <div className="text-center text-sm">
