@@ -67,9 +67,9 @@ export function SignUp({
                   
                   <div className="text-center text-sm">
                 Already have an account?{" "}
-                <a href="/" className="underline underline-offset-4">
+                <Link href="/" className="underline underline-offset-4">
                   Login
-                </a>
+                </Link>
               </div>
                 </div>
               </form>
@@ -86,7 +86,7 @@ export function SignUp({
             </CardContent>
           </Card>
           <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-            By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
+            By clicking continue, you agree to our <Link href="#">Terms of Service</Link>{" "}
             and <Link href="#">Privacy Policy</Link>.
           </div>
         </div>
