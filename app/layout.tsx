@@ -5,7 +5,7 @@ import { fontVariables } from "@/lib/fonts"
 import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/registry/new-york-v4/ui/sonner"
-import { siteConfig } from "./config/site"
+import { siteConfig } from "@/app/config/site"
 
 import "./globals.css"
 import { cn } from "@/lib/utils"
