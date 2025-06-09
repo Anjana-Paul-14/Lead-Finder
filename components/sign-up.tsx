@@ -8,6 +8,8 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import Link from "next/link"
+
 
 export function SignUp({
   className,
@@ -85,7 +87,7 @@ export function SignUp({
           </Card>
           <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
             By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-            and <a href="#">Privacy Policy</a>.
+            and <Link href="#">Privacy Policy</Link>.
           </div>
         </div>
   )
