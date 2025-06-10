@@ -38,6 +38,7 @@ export default async function AppLayout({
               <CreditButton/>
               </div>
               <ModeSwitcher />
+              {/* //eee */}
               <Profile/>
             </div>
           </div>
