@@ -2,7 +2,6 @@ import { cookies } from "next/headers"
 import { AppSidebar } from "@/components/app-sidebar"
 import { ModeSwitcher } from "@/components/mode-switcher"
 import { NavHeader } from "@/components/nav-header"
-import { ThemeSelector } from "@/components/theme-selector"
 import { Separator } from "@/registry/new-york-v4/ui/separator"
 import { CreditProvider } from '@/components/credit-context'
 import {

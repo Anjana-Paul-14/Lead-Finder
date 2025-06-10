@@ -8,7 +8,6 @@ import {
 import { cn } from "@/lib/utils"
 import { SignUp } from "@/components/sign-up"
 import LoginImg from '../../../public/login_img.jpg'
-import Image from "next/image"
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" })
 const fontSerif = FontSerif({ subsets: ["latin"], variable: "--font-serif" })
 const fontManrope = FontManrope({

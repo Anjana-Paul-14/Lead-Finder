@@ -8,6 +8,8 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import Link from "next/link"
+
 
 export function SignUp({
   className,
@@ -21,7 +23,7 @@ export function SignUp({
     const [loading, setLoading] = useState(false)
 
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
   setLoading(true);
 
@@ -65,9 +67,9 @@ export function SignUp({
                   
                   <div className="text-center text-sm">
                 Already have an account?{" "}
-                <a href="/" className="underline underline-offset-4">
+                <Link href="/" className="underline underline-offset-4">
                   Login
-                </a>
+                </Link>
               </div>
                 </div>
               </form>
@@ -84,8 +86,8 @@ export function SignUp({
             </CardContent>
           </Card>
           <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-            By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-            and <a href="#">Privacy Policy</a>.
+            By clicking continue, you agree to our <Link href="#">Terms of Service</Link>{" "}
+            and <Link href="#">Privacy Policy</Link>.
           </div>
         </div>
   )

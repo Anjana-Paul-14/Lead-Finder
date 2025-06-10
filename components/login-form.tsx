@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/registry/new-york-v4/ui/card"
 import { Input } from "@/registry/new-york-v4/ui/input"
 import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
-import { startTransition, useState } from "react"
+import {  useState } from "react"
 export function LoginForm({
   className,
   imageUrl,
@@ -20,7 +20,7 @@ export function LoginForm({
   const [loading, setLoading] = useState(false)
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   setLoading(true);
   console.log("firstttttt");
@@ -64,8 +64,9 @@ router.push("/map");
                 </div>
                 <Input id="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={loading}>
+                {/* Login */}
+                {loading ? "Logging in..." : "Login"}
               </Button>
               
               <div className="text-center text-sm">
