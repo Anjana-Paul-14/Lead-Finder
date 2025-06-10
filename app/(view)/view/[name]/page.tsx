@@ -58,17 +58,34 @@ export async function generateMetadata({
 
 export const dynamicParams = false
 
+// export async function generateStaticParams() {
+//   const { Index } = await import("@/__registry__")
+//   const index = z.record(registryItemSchema).parse(Index)
+
+//   return Object.values(index)
+//     .filter((block) =>
+//       ["registry:block", "registry:component"].includes(block.type)
+//     )
+//     .map((block) => ({
+//       name: block.name,
+//     }))
+// }
 export async function generateStaticParams() {
   const { Index } = await import("@/__registry__")
   const index = z.record(registryItemSchema).parse(Index)
 
-  return Object.values(index)
+  const staticParams = Object.values(index)
     .filter((block) =>
       ["registry:block", "registry:component"].includes(block.type)
     )
     .map((block) => ({
       name: block.name,
     }))
+
+  // 👇 This logs the names of all routes that will be statically generated
+  console.log("Generated static params:", staticParams.map((b) => b.name))
+
+  return staticParams
 }
 
 export default async function BlockPage({
