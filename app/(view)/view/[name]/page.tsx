@@ -14,12 +14,20 @@ const getCachedRegistryItem = React.cache(async (name: string) => {
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{
+}: 
+// {
+//   params: Promise<{
+//     name: string
+//   }>
+// }
+ {
+  params: {
     name: string
-  }>
-}): Promise<Metadata> {
-  const { name } = await params
+  }
+}
+): Promise<Metadata> {
+  // const { name } = await params
+  const { name } = params
   const item = await getCachedRegistryItem(name)
 
   if (!item) {
@@ -90,12 +98,20 @@ export async function generateStaticParams() {
 
 export default async function BlockPage({
   params,
-}: {
-  params: Promise<{
+}: 
+// {
+//   params: Promise<{
+//     name: string
+//   }>
+// }
+{
+  params: {
     name: string
-  }>
-}) {
-  const { name } = await params
+  }
+}
+) {
+  // const { name } = await params
+  const { name } = params
   const item = await getCachedRegistryItem(name)
   const Component = getRegistryComponent(name)
 
