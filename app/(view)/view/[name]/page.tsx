@@ -85,7 +85,12 @@ export async function generateStaticParams() {
     }))
 
   // 👇 This logs the names of all routes that will be statically generated
-  console.log("Generated static params:", staticParams.map((b) => b.name))
+  // console.log("Generated static params:", staticParams.map((b) => b.name))
+   console.log(
+    "✅ [generateStaticParams] Generated:",
+    JSON.stringify(staticParams)
+  )
+
 
   return staticParams
 }
