@@ -79,7 +79,7 @@ export async function generateStaticParams() {
 
     const staticParams = Object.values(index)
       .filter((block) =>
-        ["registry:block", "registry:component"].includes(block.type)
+        ["registry:block", "registry:component", "registry:ui"].includes(block.type)
       )
       .map((block) => ({
         name: block.name,
