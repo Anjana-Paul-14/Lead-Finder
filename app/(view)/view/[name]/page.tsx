@@ -8,9 +8,12 @@ import { getRegistryComponent, getRegistryItem } from "@/lib/registry"
 import { absoluteUrl, cn } from "@/lib/utils"
 import { siteConfig } from "@/app/config/site"
 
-const getCachedRegistryItem = React.cache(async (name: string) => {
+// const getCachedRegistryItem = React.cache(async (name: string) => {
+//   return await getRegistryItem(name)
+// })
+const getCachedRegistryItem = async (name: string) => {
   return await getRegistryItem(name)
-})
+}
 
 export async function generateMetadata({
   params,
