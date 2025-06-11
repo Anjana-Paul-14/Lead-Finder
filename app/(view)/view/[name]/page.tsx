@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Metadata } from "next"
+import { Metadata, ResolvingMetadata } from "next"
 import { notFound } from "next/navigation"
 import { registryItemSchema } from "shadcn/registry"
 import { z } from "zod"
@@ -8,6 +8,13 @@ import { getRegistryComponent, getRegistryItem } from "@/lib/registry"
 import { absoluteUrl, cn } from "@/lib/utils"
 import { siteConfig } from "@/app/config/site"
 
+import { GetStaticPropsContext } from "next"
+
+interface PageProps {
+  params: {
+    name: string
+  }
+}
 // const getCachedRegistryItem = React.cache(async (name: string) => {
 //   return await getRegistryItem(name)
 // })
@@ -15,33 +22,70 @@ const getCachedRegistryItem = async (name: string) => {
   return await getRegistryItem(name)
 }
 
-export async function generateMetadata({
-  params,
-}: 
-// {
-//   params: Promise<{
+// export async function generateMetadata({
+//   params,
+// }: 
+// // {
+// //   params: Promise<{
+// //     name: string
+// //   }>
+// // }
+//  {
+//   params: {
 //     name: string
-//   }>
+//   }
 // }
- {
-  params: {
-    name: string
-  }
-}
-): Promise<Metadata> {
-  // const { name } = await params
-  const { name } = params
-  const item = await getCachedRegistryItem(name)
+// ): Promise<Metadata> {
+//   // const { name } = await params
+//   const { name } = params
+//   const item = await getCachedRegistryItem(name)
 
-  if (!item) {
-    return {}
-  }
+//   if (!item) {
+//     return {}
+//   }
+
+//   const title = item.name
+//   const description = item.description
+
+//   return {
+//     title: `${item.name}${item.description ? ` - ${item.description}` : ""}`,
+//     description,
+//     openGraph: {
+//       title,
+//       description,
+//       type: "article",
+//       url: absoluteUrl(`/blocks/${item.name}`),
+//       images: [
+//         {
+//           url: siteConfig.ogImage,
+//           width: 1200,
+//           height: 630,
+//           alt: siteConfig.name,
+//         },
+//       ],
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title,
+//       description,
+//       images: [siteConfig.ogImage],
+//       creator: "@shadcn",
+//     },
+//   }
+// }
+export async function generateMetadata(
+  { params }: PageProps,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const item = await getCachedRegistryItem(params.name)
+
+  if (!item) return {}
 
   const title = item.name
   const description = item.description
 
   return {
-    title: `${item.name}${item.description ? ` - ${item.description}` : ""}`,
+    title: `${item.name}${description ? ` - ${description}` : ""}`,
     description,
     openGraph: {
       title,
@@ -99,34 +143,47 @@ export async function generateStaticParams() {
   return staticParams
 }
 
-export default async function BlockPage({
-  params,
-}: 
+// export default async function BlockPage({
+//   params,
+// }: 
+// // {
+// //   params: Promise<{
+// //     name: string
+// //   }>
+// // }
 // {
-//   params: Promise<{
+//   params: {
 //     name: string
-//   }>
+//   }
 // }
-{
-  params: {
-    name: string
-  }
-}
-) {
-  // const { name } = await params
-  const { name } = params
-  const item = await getCachedRegistryItem(name)
-  const Component = getRegistryComponent(name)
+// ) {
+//   // const { name } = await params
+//   const { name } = params
+//   const item = await getCachedRegistryItem(name)
+//   const Component = getRegistryComponent(name)
 
-  if (!item || !Component) {
-    return notFound()
-  }
+//   if (!item || !Component) {
+//     return notFound()
+//   }
+
+//   return (
+//     <>
+//       <div className={cn("themes-wrapper bg-background", item.meta?.container)}>
+//         <Component />
+//       </div>
+//     </>
+//   )
+// }
+export default async function BlockPage({ params }: PageProps) {
+  const item = await getCachedRegistryItem(params.name)
+  const Component = getRegistryComponent(params.name)
+
+  if (!item || !Component) return notFound()
 
   return (
-    <>
-      <div className={cn("themes-wrapper bg-background", item.meta?.container)}>
-        <Component />
-      </div>
-    </>
+    <div className={cn("themes-wrapper bg-background", item.meta?.container)}>
+      <Component />
+    </div>
   )
 }
+
