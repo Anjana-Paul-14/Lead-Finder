@@ -56,7 +56,9 @@ export async function generateMetadata({
   }
 }
 
-export const dynamicParams = false
+export const dynamic = "force-dynamic"
+
+// export const dynamicParams = false
 
 // export async function generateStaticParams() {
 //   const { Index } = await import("@/__registry__")
