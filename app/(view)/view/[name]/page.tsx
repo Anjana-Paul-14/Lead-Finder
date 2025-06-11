@@ -73,27 +73,26 @@ export const dynamic = "force-dynamic"
 //     }))
 // }
 export async function generateStaticParams() {
-  const { Index } = await import("@/__registry__")
-  const index = z.record(registryItemSchema).parse(Index)
+  try {
+    const { Index } = await import("@/__registry__")
+    const index = z.record(registryItemSchema).parse(Index)
 
-  const staticParams = Object.values(index)
-    .filter((block) =>
-      ["registry:block", "registry:component"].includes(block.type)
-    )
-    .map((block) => ({
-      name: block.name,
-    }))
+    const staticParams = Object.values(index)
+      .filter((block) =>
+        ["registry:block", "registry:component"].includes(block.type)
+      )
+      .map((block) => ({
+        name: block.name,
+      }))
 
-  // 👇 This logs the names of all routes that will be statically generated
-  // console.log("Generated static params:", staticParams.map((b) => b.name))
-   console.log(
-    "✅ [generateStaticParams] Generated:",
-    JSON.stringify(staticParams)
-  )
-
-
-  return staticParams
+    console.log("✅ Static params:", staticParams.map((b) => b.name))
+    return staticParams
+  } catch (error) {
+    console.error("❌ Error generating static params:", error)
+    return []
+  }
 }
+
 
 export default async function BlockPage({
   params,
