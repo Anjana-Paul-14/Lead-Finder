@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { cookies } from "next/headers"
 
 import { fontVariables } from "@/lib/fonts"
-import { Analytics } from "@/components/analytics"
+// import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/registry/new-york-v4/ui/sonner"
 import { siteConfig } from "@/app/config/site"
@@ -113,7 +113,7 @@ export default async function RootLayout({
           <ActiveThemeProvider initialTheme={activeThemeValue}>
             {children}
             <Toaster />
-            <Analytics />
+            {/* <Analytics /> */}
           </ActiveThemeProvider>
         </ThemeProvider>
       </body>
