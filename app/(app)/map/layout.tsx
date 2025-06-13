@@ -25,7 +25,7 @@ export default async function AppLayout({
     <SidebarProvider defaultOpen={defaultOpen} >
       <AppSidebar />
       <SidebarInset>
-        <header className="bg-background sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2 border-b border-4 border-amber-300">
+        <header className="bg-background sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2 border-b border-4">
           <div className="flex h-14 w-full items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1.5" />
             <Separator
@@ -33,7 +33,7 @@ export default async function AppLayout({
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <NavHeader />
-            <div className="ml-auto flex items-center gap-2 border-4 border-purple-500">
+            <div className="ml-auto flex items-center gap-2 border-4">
               <div>
               <CreditButton/>
               </div>

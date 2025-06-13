@@ -370,7 +370,7 @@ export const Map = () => {
   );
 
   return (
-    <div className="flex flex-col items-center w-full h-full border-4 border-amber-300">
+    <div className="flex flex-col items-center w-full h-full border-4 ">
       <div className="w-full flex justify-center pt-4">
         {currentLocation ? (
           <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
