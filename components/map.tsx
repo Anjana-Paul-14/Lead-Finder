@@ -370,8 +370,8 @@ export const Map = () => {
   );
 
   return (
-    <div className="flex flex-col items-center w-full h-full border-4 ">
-      <div className="w-full flex justify-center pt-4">
+    <div className="flex flex-col items-center w-full h-full border-4 px-4 sm:px-6 lg:px-12 py-6 max-w-screen-lg mx-auto">
+      <div className="w-full h-[60vh] mb-6 rounded-lg overflow-hidden min-h-[300px]">
         {currentLocation ? (
           <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
             <Marker position={currentLocation} />
@@ -381,8 +381,8 @@ export const Map = () => {
         )}
       </div>
 
-      <div className="flex flex-row items-center py-8">
-        <div className="w-100">
+      <div className="flex flex-col sm:flex-row w-full items-center justify-center gap-4 mb-6">
+        <div className="w-full sm:w-3/4 md:w-2/3">
           <Command>
             <CommandInput
               placeholder="Type a command or search..."
@@ -392,13 +392,14 @@ export const Map = () => {
           </Command>
         </div>
         <div className="pl-4">
-          <Button onClick={handleSearch}>Search</Button>
+          <Button onClick={handleSearch} className="w-full sm:w-auto">Search</Button>
         </div>
       </div>
 
       {places.length > 0 && (
-        <div className="w-full px-4">
-          <Table>
+        <div className="w-full overflow-x-auto">
+           <div className="min-w-[400px] w-full">
+          <Table className="w-full table-auto">
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
@@ -431,10 +432,11 @@ export const Map = () => {
               ))}
             </TableBody>
           </Table>
+          </div>
 
           {/* Pagination Section */}
           <Pagination className="mt-4">
-            <PaginationContent>
+            <PaginationContent className="flex-wrap justify-center">
               <PaginationItem>
                 <PaginationPrevious
                   href="#"
