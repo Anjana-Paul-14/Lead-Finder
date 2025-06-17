@@ -370,7 +370,7 @@ export const Map = () => {
   );
 
   return (
-    <div className="flex flex-col items-center w-full h-full border-4 px-4 sm:px-6 lg:px-12 py-6 max-w-screen-lg mx-auto">
+    <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
       <div className="w-full h-[60vh] mb-6 rounded-lg overflow-hidden min-h-[300px]">
         {currentLocation ? (
           <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
@@ -397,9 +397,9 @@ export const Map = () => {
       </div>
 
       {places.length > 0 && (
-        <div className="w-full overflow-x-auto">
-           <div className="min-w-[400px] w-full">
-          <Table className="w-full table-auto">
+        <div className="w-full px-4">
+           {/* <div className="min-w-[400px] w-full"> */}
+          <Table style={{border:'1px solid amber'}}>
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
@@ -432,7 +432,7 @@ export const Map = () => {
               ))}
             </TableBody>
           </Table>
-          </div>
+          {/* </div> */}
 
           {/* Pagination Section */}
           <Pagination className="mt-4">
