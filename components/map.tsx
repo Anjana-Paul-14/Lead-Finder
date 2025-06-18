@@ -397,9 +397,9 @@ export const Map = () => {
       </div>
 
       {places.length > 0 && (
-        <div className="w-full px-4 overflow-x-auto" style={{border:'1px solid aqua'}}>
-           <div className="w-[400px] sm:w-full" style={{border:'1px solid amber'}}>
-          <Table className="" style={{border:'1px solid amber'}}>
+        <div className="w-full px-4 overflow-x-auto">
+           <div className="w-[400px] sm:w-full">
+          <Table className="">
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
