@@ -1,14 +1,14 @@
-# 🕵️‍♂️ Lead Finder - Company Website Checker
+# Lead Finder - Company Website Checker
 
 A dynamic web app built with **React.js**, **Vite.js**, and **Tailwind CSS** that helps users **search for companies**, check if they have an online presence, and identify **potential leads**.
 
-## 🌐 Live Website
+## Live Website
 
-👉 Live Demo : https://lead-find.netlify.app/
+Live Demo : https://lead-find.netlify.app/
 
 ---
 
-## 🚀 Features
+##  Features
 
 -  Search for companies using a keyword-based search bar.
 -  Instantly check whether each company has a website.
@@ -17,7 +17,7 @@ A dynamic web app built with **React.js**, **Vite.js**, and **Tailwind CSS** tha
 
 ---
 
-## 🛠️ Built With
+##  Built With
 
 - React.js
 - Vite. js
