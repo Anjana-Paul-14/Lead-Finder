@@ -23,12 +23,35 @@ export function SignUp({
     const [loading, setLoading] = useState(false)
 
 
-    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-  setLoading(true);
+  //   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  //       e.preventDefault();
+  // setLoading(true);
 
-  router.push("/")
-    };
+  // router.push("/")
+  //   };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  setLoading(true)
+  const name = e.currentTarget.name.value
+  const email = e.currentTarget.email.value
+  const password = e.currentTarget.password.value
+
+  const res = await fetch("/api/auth/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+  })
+
+  const data = await res.json()
+
+  if (res.ok) {
+    router.push("/")
+  } else {
+    alert(data.error || "Something went wrong")
+    setLoading(false)
+  }
+}
+
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

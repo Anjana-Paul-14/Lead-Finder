@@ -1,23 +1,28 @@
-// lib/mongodb.ts
-import mongoose from 'mongoose'
+import connectDB from "@/lib/mongodb"
+import User from "@/models/User"
+import bcrypt from "bcryptjs"
 
-const MONGODB_URI = process.env.MONGODB_URI!
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).end()
 
-if (!MONGODB_URI) throw new Error("Please define the MONGODB_URI in .env.local")
+  const { email, password } = req.body
 
-let cached = global.mongoose || { conn: null, promise: null }
+  try {
+    await connectDB()
 
-async function connectDB() {
-  if (cached.conn) return cached.conn
+    const user = await User.findOne({ email })
+    if (!user) {
+      return res.status(400).json({ error: "User not found" })
+    }
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      bufferCommands: false,
-    }).then((mongoose) => mongoose)
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch) {
+      return res.status(400).json({ error: "Invalid password" })
+    }
+
+    return res.status(200).json({ message: "Login successful", user: user._id })
+  } catch (err) {
+    console.error("Login error:", err)
+    return res.status(500).json({ error: "Server error" })
   }
-
-  cached.conn = await cached.promise
-  return cached.conn
 }
-
-export default connectDB
