@@ -28,21 +28,44 @@
 //   }
 // }
 
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
 
 
-const connectDB = async () => {
-    try{
-        // await mongoose.connect(process.env.MONGODB_URI)
-        // console.log("Connected to DB")
-        const uri = process.env.MONGODB_URI;
-        if (!uri) throw new Error("MONGODB_URI is not defined");
-        await mongoose.connect(uri);
-        console.log("Connected to DB");
+// const connectDB = async () => {
+//     try{
+//         // await mongoose.connect(process.env.MONGODB_URI)
+//         // console.log("Connected to DB")
+//         const uri = process.env.MONGODB_URI;
+//         if (!uri) throw new Error("MONGODB_URI is not defined");
+//         await mongoose.connect(uri);
+//         console.log("Connected to DB");
 
-    } catch (err) {
-        console.error("DB connection error:", err);
-        throw err;
-    }
+//     } catch (err) {
+//         console.error("DB connection error:", err);
+//         throw err;
+//     }
+// }
+// export default connectDB;
+
+// lib/connectDB.ts
+import mongoose from "mongoose";
+
+const connection: { isConnected?: number } = {};
+
+async function connectDB() {
+  if (connection.isConnected) return;
+  
+  try {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) throw new Error("MONGODB_URI not defined");
+    
+    const db = await mongoose.connect(uri);
+    connection.isConnected = db.connections[0].readyState;
+    console.log("DB connected");
+  } catch (err) {
+    console.error("DB connection error:", err);
+    throw err;
+  }
 }
+
 export default connectDB;

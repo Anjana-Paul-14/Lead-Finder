@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Link from "next/link"
 import axios from "axios"
-import { NextResponse } from "next/server"
 
 
 export function SignUp({
@@ -74,7 +73,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     setError(null)
 
-    const response = await axios.post('/api/signup/router', { name, email, password });
+    const response = await axios.post('/api/signup/router/route', { name, email, password });
     console.log("Signup success:", response.data);
 
     // router.push("/")
@@ -84,9 +83,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setError(response.data.error || "Signup failed")
       }
 
-  } catch (error) {
+  } catch (error: any) {
   console.error("Signup error:", error);
-  return NextResponse.json({ error: error instanceof Error ? error.message : "Server error" }, { status: 500 });
+  setError(error.response?.data?.error || "Signup failed");
+  if (axios.isAxiosError(error) && error.response) {
+    setError(error.response.data.error || "Signup failed");
+  } else {
+    setError("An unexpected error occurred");
+  }
+} finally {
+  setLoading(false);
 }
 //   catch (error) {
 //   if (axios.isAxiosError(error)) {
