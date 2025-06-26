@@ -57,13 +57,28 @@ export function SignUp({
 //   }
 // }
 
-const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+// const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
 
-  const response = await axios.post('/api/auth/signup', {name, email, password})
-  console.log(response)
-  // setLoading(true);
-}
+//   const response = await axios.post('/api/auth/signup', {name, email, password})
+//   console.log(response)
+//   // setLoading(true);
+// }
+
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  try {
+    setLoading(true);
+    const response = await axios.post('/api/signup/router', { name, email, password });
+    console.log("Signup success:", response.data);
+  } catch (error) {
+    console.error("Signup error:", error); // ✅ catch client-side error
+  } finally {
+    setLoading(false);
+  }
+};
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
           <Card className="overflow-hidden p-0">
