@@ -72,6 +72,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   try {
     setLoading(true);
     setError(null)
+    console.log('mongodb uri', process.env.MONGODB_URI)
 
     const response = await axios.post('/api/signup/router', { name, email, password });
     console.log("Signup success:", response.data);
