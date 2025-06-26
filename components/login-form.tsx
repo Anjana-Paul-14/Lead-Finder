@@ -8,6 +8,8 @@ import { Input } from "@/registry/new-york-v4/ui/input"
 import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
 import {  useState } from "react"
+import axios from "axios"
+
 export function LoginForm({
   className,
   imageUrl,
@@ -18,20 +20,38 @@ export function LoginForm({
 {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("")  
+      const [password, setPassword] = useState("")
+      const [error, setError] = useState<string | null>(null)
 
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setLoading(true);
-  console.log("firstttttt");
-router.push("/map");
-  // setTimeout(() => {
-  //   setLoading(false);
-  //   startTransition(() => {
-  //     router.push("/map");
-  //   });
-  // }, 1000);
-};
+//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+//   setLoading(true)
+//     setError(null)
+
+//   try{
+//     // setLoading(true);
+//     const response = await fetch("/api/login/router", { email, password})
+// console.log("login success:", response.data);
+//     router.push("/map"); 
+
+//   }catch (error: any) {
+//     console.error("Login error:", error.response?.data || error.message);
+//     alert(error.response?.data?.error || "Login failed");
+//   }
+//   finally {
+//     setLoading(false);
+//   }
+// //   console.log("firstttttt");
+// // router.push("/map");
+//   // setTimeout(() => {
+//   //   setLoading(false);
+//   //   startTransition(() => {
+//   //     router.push("/map");
+//   //   });
+//   // }, 1000);
+// };
   
 // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 //   e.preventDefault()
@@ -58,6 +78,28 @@ router.push("/map");
 //     setLoading(false)
 //   }
 // }
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await axios.post('/api/login/router', { email, password })
+      
+      if (response.status === 200) {
+        router.push("/map")
+      } else {
+        setError(response.data.error || "Login failed")
+      }
+    } catch (err: any) {
+      setError(
+        err.response?.data?.error || 
+        "An error occurred during login"
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
 
 
   return (
@@ -76,6 +118,7 @@ router.push("/map");
                   type="email"
                   placeholder="m@example.com"
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-3">
@@ -88,9 +131,20 @@ router.push("/map");
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" 
+                type="password" 
+                required 
+                onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+
+              {error && (
+                <p className="text-red-500 text-sm">{error}</p>
+              )}
+              
+              <Button type="submit" 
+              className="w-full" 
+              disabled={loading}>
                 {/* Login */}
                 {loading ? "Logging in..." : "Login"}
               </Button>

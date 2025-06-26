@@ -25,6 +25,7 @@ export function SignUp({
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")  
     const [password, setPassword] = useState("")
+    const [error, setError] = useState<string | null>(null)
 
 
   //   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -70,13 +71,23 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   try {
     setLoading(true);
+    setError(null)
+
     const response = await axios.post('/api/signup/router', { name, email, password });
     console.log("Signup success:", response.data);
 
-    router.push("/")
-    
-  } catch (error) {
-    console.error("Signup error:", error); // ✅ catch client-side error
+    // router.push("/")
+    if (response.status === 201) {
+        router.push("/")
+      } else {
+        setError(response.data.error || "Signup failed")
+      }
+
+  } catch  (err: any) {
+    setError(
+        err.response?.data?.error || 
+        "An error occurred during signup"
+      )
   } finally {
     setLoading(false);
   }
@@ -119,6 +130,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {error && (
+        <p className="text-red-500 text-sm text-center">{error}</p>
+      )}
                   <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Creating Account..." : "Sign up"}
               </Button>

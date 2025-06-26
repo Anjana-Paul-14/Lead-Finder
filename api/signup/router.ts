@@ -1,35 +1,40 @@
-
-import User from "@/models/User"
 import connectDB from "@/lib/connectDB"
+import User from "@/models/User"
 import bcrypt from "bcryptjs"
 import { NextResponse } from "next/server"
+
 export async function POST(req: Request) {
   try {
-    await connectDB();
+    await connectDB()
+    const { email, password } = await req.json()
 
-    const body = await req.json();
-    console.log("Request body:", body); // ✅ log request
-
-    const { name, email, password } = body;
-
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return NextResponse.json({ error: "User already exists" }, { status: 400 });
+    // Find user by email
+    const user = await User.findOne({ email })
+    if (!user) {
+      return NextResponse.json(
+        { error: "Invalid email or password" },
+        { status: 401 }
+      )
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+    if (!isPasswordValid) {
+      return NextResponse.json(
+        { error: "Invalid email or password" },
+        { status: 401 }
+      )
+    }
 
     return NextResponse.json(
-      { message: "User created successfully", userId: newUser._id },
-      { status: 201 }
-    );
+      { message: "Login successful", userId: user._id },
+      { status: 200 }
+    )
   } catch (err) {
-    console.error("Signup error:", err); // ✅ detailed logging
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("Login error:", err)
+    return NextResponse.json(
+      { error: "Server error" },
+      { status: 500 }
+    )
   }
 }
