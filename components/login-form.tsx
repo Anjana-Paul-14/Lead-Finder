@@ -91,14 +91,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       } else {
         setError(response.data.error || "Login failed")
       }
-    } catch (err: any) {
-      setError(
-        err.response?.data?.error || 
-        "An error occurred during login"
-      )
-    } finally {
-      setLoading(false)
-    }
+    } catch (error) {
+  if (axios.isAxiosError(error)) {
+    console.error("Login error:", error.response?.data);
+    alert(error.response?.data?.error || "Login failed");
+  } else {
+    console.error("Unexpected error:", error);
+  }
+
   }
 
 
