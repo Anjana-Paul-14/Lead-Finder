@@ -26,6 +26,9 @@ export function SiteHeader() {
 
   // Faux breadcrumbs for demo.
   const breadcrumbs = useMemo(() => {
+
+    if (!pathname) return [];
+
     return pathname
       .split("/")
       .filter((path) => path !== "")
