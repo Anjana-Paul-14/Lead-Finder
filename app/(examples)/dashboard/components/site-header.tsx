@@ -24,19 +24,27 @@ export function SiteHeader() {
   const { toggleSidebar } = useSidebar()
   const pathname = usePathname()
 
-  // Faux breadcrumbs for demo.
+  // // Faux breadcrumbs for demo.
+  // const breadcrumbs = useMemo(() => {
+  //   return pathname
+  //     .split("/")
+  //     .filter((path) => path !== "")
+  //     .map((path, index, array) => ({
+  //       label: path,
+  //       href: `/${array.slice(0, index + 1).join("/")}`,
+  //     }))
+  // }, [pathname])
   const breadcrumbs = useMemo(() => {
+  if (!pathname) return [];
 
-    if (!pathname) return [];
-
-    return pathname
-      .split("/")
-      .filter((path) => path !== "")
-      .map((path, index, array) => ({
-        label: path,
-        href: `/${array.slice(0, index + 1).join("/")}`,
-      }))
-  }, [pathname])
+  return pathname
+    .split("/")
+    .filter((path) => path !== "")
+    .map((path, index, array) => ({
+      href: "/" + array.slice(0, index + 1).join("/"),
+      label: path,
+    }));
+}, [pathname]);
 
   return (
     <header
