@@ -73,7 +73,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     setError(null)
 
-    const response = await axios.post('/api/signup/router/route', { name, email, password });
+    const response = await axios.post('/api/signup/router', { name, email, password });
     console.log("Signup success:", response.data);
 
     // router.push("/")
@@ -83,11 +83,13 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setError(response.data.error || "Signup failed")
       }
 
-  } catch (error: any) {
+  } // Replace the catch block in handleSubmit
+catch (error) {
   console.error("Signup error:", error);
-  setError(error.response?.data?.error || "Signup failed");
   if (axios.isAxiosError(error) && error.response) {
     setError(error.response.data.error || "Signup failed");
+  } else if (error instanceof Error) {
+    setError(error.message);
   } else {
     setError("An unexpected error occurred");
   }

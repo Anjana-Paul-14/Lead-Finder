@@ -50,7 +50,7 @@
 // lib/connectDB.ts
 import mongoose from "mongoose";
 
-const connection: { isConnected?: number } = {};
+const connection: { isConnected?: boolean } = {};
 
 async function connectDB() {
   if (connection.isConnected) return;
@@ -60,7 +60,8 @@ async function connectDB() {
     if (!uri) throw new Error("MONGODB_URI not defined");
     
     const db = await mongoose.connect(uri);
-    connection.isConnected = db.connections[0].readyState;
+    // connection.isConnected = db.connections[0].readyState;
+    connection.isConnected = db.connections[0].readyState === 1;
     console.log("DB connected");
   } catch (err) {
     console.error("DB connection error:", err);
