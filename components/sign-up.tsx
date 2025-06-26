@@ -91,7 +91,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.error("Unexpected error:", error);
   }
 };
-
+}
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
           <Card className="overflow-hidden p-0">
@@ -161,5 +161,5 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             and <Link href="#">Privacy Policy</Link>.
           </div>
         </div>
-  )
+  );
 }
