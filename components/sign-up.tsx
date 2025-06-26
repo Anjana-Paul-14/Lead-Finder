@@ -9,6 +9,7 @@ import { Label } from "@/registry/new-york-v4/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Link from "next/link"
+import axios from "axios"
 
 
 export function SignUp({
@@ -21,6 +22,9 @@ export function SignUp({
 
     const router = useRouter()
     const [loading, setLoading] = useState(false)
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")  
+    const [password, setPassword] = useState("")
 
 
   //   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -29,30 +33,37 @@ export function SignUp({
 
   // router.push("/")
   //   };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault()
-  setLoading(true)
-  const name = e.currentTarget.name.value
-  const email = e.currentTarget.email.value
-  const password = e.currentTarget.password.value
 
-  const res = await fetch("/api/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, password }),
-  })
+//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault()
+//   setLoading(true)
+//   const name = e.currentTarget.name.value
+//   const email = e.currentTarget.email.value
+//   const password = e.currentTarget.password.value
 
-  const data = await res.json()
+//   const res = await fetch("/api/auth/signup", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ name, email, password }),
+//   })
 
-  if (res.ok) {
-    router.push("/")
-  } else {
-    alert(data.error || "Something went wrong")
-    setLoading(false)
-  }
+//   const data = await res.json()
+
+//   if (res.ok) {
+//     router.push("/")
+//   } else {
+//     alert(data.error || "Something went wrong")
+//     setLoading(false)
+//   }
+// }
+
+const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const response = await axios.post('/api/auth/signup', {name, email, password})
+  console.log(response)
+  // setLoading(true);
 }
-
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
           <Card className="overflow-hidden p-0">
@@ -69,6 +80,7 @@ export function SignUp({
                       type="name"
                       placeholder="Name"
                       required
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                   <div className="grid gap-3">
@@ -78,11 +90,16 @@ export function SignUp({
                       type="email"
                       placeholder="m@example.com"
                       required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="grid gap-3">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required />
+                <Input id="password" 
+                type="password" 
+                required  
+                onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
                   <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Creating Account..." : "Sign up"}
