@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Link from "next/link"
 import axios from "axios"
+import { NextResponse } from "next/server"
 
 
 export function SignUp({
@@ -84,13 +85,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       }
 
   } catch (error) {
-  if (axios.isAxiosError(error)) {
-    console.error("Signup error:", error.response?.data);
-    alert(error.response?.data?.error || "Signup failed");
-  } else {
-    console.error("Unexpected error:", error);
-  }
-};
+  console.error("Signup error:", error);
+  return NextResponse.json({ error: error instanceof Error ? error.message : "Server error" }, { status: 500 });
+}
+//   catch (error) {
+//   if (axios.isAxiosError(error)) {
+//     console.error("Signup error:", error.response?.data);
+//     alert(error.response?.data?.error || "Signup failed");
+//   } else {
+//     console.error("Unexpected error:", error);
+//   }
+// };
 }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -161,5 +166,5 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             and <Link href="#">Privacy Policy</Link>.
           </div>
         </div>
-  );
+  )
 }
