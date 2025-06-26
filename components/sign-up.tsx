@@ -72,6 +72,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     const response = await axios.post('/api/signup/router', { name, email, password });
     console.log("Signup success:", response.data);
+
+    router.push("/")
+    
   } catch (error) {
     console.error("Signup error:", error); // ✅ catch client-side error
   } finally {
