@@ -57,6 +57,7 @@ async function connectDB() {
   
   try {
     const uri = process.env.MONGODB_URI;
+    console.log('first uri', uri);
     if (!uri) throw new Error("MONGODB_URI not defined");
     
     const db = await mongoose.connect(uri);
