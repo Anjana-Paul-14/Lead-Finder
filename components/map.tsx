@@ -284,23 +284,44 @@ export const Map = () => {
     libraries,
   });
 
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setCurrentLocation({
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         });
+  //       },
+  //       (error) => {
+  //         console.error("Error getting location:", error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //   }
+  // }, []);
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
+  if (!navigator.geolocation) {
+    console.error("Geolocation not supported");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const coords = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      console.log("Current location:", coords);
+      setCurrentLocation(coords);
+    },
+    (error) => {
+      console.error("Geolocation error:", error);
     }
-  }, []);
+  );
+}, []);
+
 
   const handleSearch = async () => {
     if (!currentLocation || !searchQuery) return;
