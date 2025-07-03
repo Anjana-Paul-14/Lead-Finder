@@ -283,6 +283,8 @@ export const Map = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
     libraries,
   });
+  console.log("API Key:", process.env.NEXT_PUBLIC_MAPS_API_KEY);
+  console.log("isLoaded:", isLoaded, "loadError:", loadError);
 
   // useEffect(() => {
   //   if (navigator.geolocation) {
@@ -302,6 +304,7 @@ export const Map = () => {
   //   }
   // }, []);
   useEffect(() => {
+    console.log("Checking geolocation...");
   if (!navigator.geolocation) {
     console.error("Geolocation not supported");
     return;
@@ -394,7 +397,7 @@ export const Map = () => {
     <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
       <div className="w-full h-[60vh] mb-6 rounded-lg overflow-hidden min-h-[300px]">
         {currentLocation ? (
-          <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10}>
+          <GoogleMap mapContainerStyle={containerStyle} center={currentLocation} zoom={10} onLoad={() => console.log("Google Map rendered successfully")}>
             <Marker position={currentLocation} />
           </GoogleMap>
         ) : (
