@@ -283,7 +283,7 @@ export const Map = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
     libraries,
   });
-  console.log("API Key:", process.env.NEXT_PUBLIC_MAPS_API_KEY);
+  // console.log("API Key:", process.env.NEXT_PUBLIC_MAPS_API_KEY);
   console.log("isLoaded:", isLoaded, "loadError:", loadError);
 
   // useEffect(() => {
