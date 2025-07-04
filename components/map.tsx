@@ -310,19 +310,34 @@ export const Map = () => {
     return;
   }
 
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const coords = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      console.log("Current location:", coords);
-      setCurrentLocation(coords);
-    },
-    (error) => {
-      console.error("Geolocation error:", error);
-    }
-  );
+  // navigator.geolocation.getCurrentPosition(
+  //   (position) => {
+  //     const coords = {
+  //       lat: position.coords.latitude,
+  //       lng: position.coords.longitude,
+  //     };
+  //     console.log("Current location:", coords);
+  //     setCurrentLocation(coords);
+  //   },
+  //   (error) => {
+  //     console.error("Geolocation error:", error);
+  //   }
+  // );
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    const coords = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    console.log("Current location:", coords);
+    setCurrentLocation(coords);
+  },
+  (error) => {
+    console.error("Geolocation error:", error);
+  },
+  { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+);
+
 }, []);
 
 
