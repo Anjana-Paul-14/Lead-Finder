@@ -408,22 +408,23 @@ navigator.geolocation.getCurrentPosition(
     currentPage * itemsPerPage
   );
 
-const handleSave = async (place: PlaceDetails) => {
+const handleSaveAll = async () => {
   try {
     const res = await fetch('/api/user/save-place', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ place }),
+      body: JSON.stringify({ places }), // send the full list
     });
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Failed to save");
-    alert("Place saved successfully!");
+    alert("Places saved successfully!");
   } catch (err) {
     console.error(err);
-    alert("Error saving place");
+    alert("Error saving places");
   }
 };
+
 
 
 
@@ -492,7 +493,7 @@ const handleSave = async (place: PlaceDetails) => {
           </Table>
           </div>
 <div className="flex justify-end mt-4">
-      <Button onSubmit={handleSave}>Save List</Button>
+      <Button onSubmit={handleSaveAll}>Save List</Button>
     </div>
           {/* Pagination Section */}
           <Pagination className="mt-4">

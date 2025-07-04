@@ -16,14 +16,12 @@ const UserSchema = new mongoose.Schema ({
  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   savedPlaces: [
-    {
-      name: String,
-      vicinity: String,
-      rating: mongoose.Schema.Types.Mixed,
-      website: String,
-      place_id: String,
-    },
-  ],
+  {
+    name: String,
+    vicinity: String,
+    place_id: String
+  }
+]
 })
 
 
