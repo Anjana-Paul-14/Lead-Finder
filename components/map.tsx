@@ -393,6 +393,25 @@ export const Map = () => {
     currentPage * itemsPerPage
   );
 
+const handleSave = async (place: PlaceDetails) => {
+  try {
+    const res = await fetch('/api/user/save-place', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ place }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Failed to save");
+    alert("Place saved successfully!");
+  } catch (err) {
+    console.error(err);
+    alert("Error saving place");
+  }
+};
+
+
+
   return (
     <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
       <div className="w-full h-[60vh] mb-6 rounded-lg overflow-hidden min-h-[300px]">
@@ -457,7 +476,9 @@ export const Map = () => {
             </TableBody>
           </Table>
           </div>
-
+<div className="flex justify-end mt-4">
+      <Button onSubmit={handleSave}>Save List</Button>
+    </div>
           {/* Pagination Section */}
           <Pagination className="mt-4">
             <PaginationContent className="flex-wrap justify-center">
