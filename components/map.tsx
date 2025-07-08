@@ -271,11 +271,9 @@ interface PlaceDetails {
 
 export const Map = () => {
   const { decrementCredits } = useCredits();
-
   const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [places, setPlaces] = useState<PlaceDetails[]>([]);
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -401,7 +399,6 @@ navigator.geolocation.getCurrentPosition(
   if (!isLoaded) {
     return <p>Loading maps...</p>;
   }
-
   const totalPages = Math.ceil(places.length / itemsPerPage);
   const paginatedPlaces = places.slice(
     (currentPage - 1) * itemsPerPage,
@@ -415,7 +412,6 @@ const handleSaveAll = async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ places }), // send the full list
     });
-
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Failed to save");
     alert("Places saved successfully!");
@@ -424,9 +420,6 @@ const handleSaveAll = async () => {
     alert("Error saving places");
   }
 };
-
-
-
 
   return (
     <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
