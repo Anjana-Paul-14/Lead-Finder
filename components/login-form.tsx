@@ -25,59 +25,59 @@ export function LoginForm({
       const [error, setError] = useState<string | null>(null)
 
 
-//   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//   e.preventDefault();
-//   setLoading(true)
-//     setError(null)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true)
+    setError(null)
 
-//   try{
-//     // setLoading(true);
-//     const response = await fetch("/api/login/router", { email, password})
-// console.log("login success:", response.data);
-//     router.push("/map"); 
+  try{
+    // setLoading(true);
+    const response = await fetch("/api/login/router", { email, password})
+console.log("login success:", response.data);
+    router.push("/map"); 
 
-//   }catch (error: any) {
-//     console.error("Login error:", error.response?.data || error.message);
-//     alert(error.response?.data?.error || "Login failed");
-//   }
-//   finally {
-//     setLoading(false);
-//   }
-// //   console.log("firstttttt");
-// // router.push("/map");
-//   // setTimeout(() => {
-//   //   setLoading(false);
-//   //   startTransition(() => {
-//   //     router.push("/map");
-//   //   });
-//   // }, 1000);
-// };
+  }catch (error: any) {
+    console.error("Login error:", error.response?.data || error.message);
+    alert(error.response?.data?.error || "Login failed");
+  }
+  finally {
+    setLoading(false);
+  }
+//   console.log("firstttttt");
+// router.push("/map");
+  // setTimeout(() => {
+  //   setLoading(false);
+  //   startTransition(() => {
+  //     router.push("/map");
+  //   });
+  // }, 1000);
+};
   
-// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//   e.preventDefault()
-//   setLoading(true)
-//   const email = e.currentTarget.email.value
-//   const password = e.currentTarget.password.value
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  setLoading(true)
+  const email = e.currentTarget.email.value
+  const password = e.currentTarget.password.value
 
-//   try {
-//     const res = await fetch("/api/auth/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, password }),
-//     })
+  try {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
 
-//     const data = await res.json() // <-- crashing here if server returns HTML
+    const data = await res.json() // <-- crashing here if server returns HTML
 
-//     if (!res.ok) {
-//       throw new Error(data?.error || "Login failed")
-//     }
+    if (!res.ok) {
+      throw new Error(data?.error || "Login failed")
+    }
 
-//     router.push("/map")
-//   } catch (err: any) {
-//     alert(err.message || "Something went wrong")
-//     setLoading(false)
-//   }
-// }
+    router.push("/map")
+  } catch (err: any) {
+    alert(err.message || "Something went wrong")
+    setLoading(false)
+  }
+}
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
