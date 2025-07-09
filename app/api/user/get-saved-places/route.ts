@@ -1,9 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, } from "next/server";
 import connectDB from "@/lib/connectDB";
 import User from "@/models/User";
 import { getToken } from "next-auth/jwt";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth"; 
+
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     await connectDB();
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
