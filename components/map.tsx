@@ -253,6 +253,7 @@ import { Button } from '@/registry/new-york-v4/ui/button';
 import { useCredits } from '@/components/credit-context';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
+import SavedPlaces from './saved-places'; 
 
 const containerStyle = {
   width: "100%",
@@ -275,6 +276,8 @@ export const Map = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [places, setPlaces] = useState<PlaceDetails[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [savedPlaces, setSavedPlaces] = useState<PlaceDetails[]>([]);
+  const [showSaved, setShowSaved] = useState(false)
   const itemsPerPage = 5;
 
   const { isLoaded, loadError } = useLoadScript({
@@ -405,21 +408,53 @@ navigator.geolocation.getCurrentPosition(
     currentPage * itemsPerPage
   );
 
-const handleSaveAll = async () => {
-  try {
-    const res = await fetch('/api/user/save-place', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ places }), // send the full list
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Failed to save");
-    alert("Places saved successfully!");
-  } catch (err) {
-    console.error(err);
-    alert("Error saving places");
-  }
-};
+  useEffect(() => {
+    const fetchSaved = async () => {
+      try {
+        const res = await fetch('/api/user/get-saved-places');
+        const data = await res.json();
+        setSavedPlaces(data.savedPlaces || []);
+      } catch (err) {
+        console.error("Failed to fetch saved places", err);
+      }
+    };
+    fetchSaved();
+  }, []);
+  const handleSaveAll = async () => {
+    try {
+      const res = await fetch('/api/user/save-place', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ places }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to save");
+      alert("Places saved successfully!");
+      
+      // Refresh saved places
+      const newRes = await fetch('/api/user/get-saved-places');
+      const newData = await newRes.json();
+      setSavedPlaces(newData.savedPlaces || []);
+    } catch (err) {
+      console.error(err);
+      alert("Error saving places");
+    }
+  };
+// const handleSaveAll = async () => {
+//   try {
+//     const res = await fetch('/api/user/save-place', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ places }), // send the full list
+//     });
+//     const data = await res.json();
+//     if (!res.ok) throw new Error(data.error || "Failed to save");
+//     alert("Places saved successfully!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Error saving places");
+//   }
+// };
 
   return (
     <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
