@@ -19,7 +19,8 @@ const UserSchema = new mongoose.Schema ({
   {
     name: String,
     vicinity: String,
-    place_id: String
+    place_id: String,
+    _id: false
   }
 ]
 })
