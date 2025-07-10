@@ -1,29 +1,36 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
-import connectDB from '@/lib/connectDB';
-import User from '@/models/User';
+import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@/lib/connectDB";
+import User from "@/models/User";
 
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
+    const body = await req.json();
+    const { email, places } = body;
 
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!email || !places || !Array.isArray(places)) {
+      return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
     }
 
-    const body = await req.json();
-    const { places } = body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
-    const updatedUser = await User.findOneAndUpdate(
-      { email: token.email },
-      { $set: { savedPlaces: places } },
-      { new: true }
-    );
+    const existingPlaceIds = new Set(user.savedPlaces.map((p: any) => p.place_id));
 
-    return NextResponse.json({ success: true, savedPlaces: updatedUser.savedPlaces });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Server Error' }, { status: 500 });
+    const newPlaces = places.filter((place: any) => !existingPlaceIds.has(place.place_id));
+
+    if (newPlaces.length === 0) {
+      return NextResponse.json({ message: "No new places to save" });
+    }
+
+    user.savedPlaces.push(...newPlaces);
+    await user.save();
+
+    return NextResponse.json({ message: "Places saved successfully" });
+  } catch (error) {
+    console.error("Error saving all places:", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
