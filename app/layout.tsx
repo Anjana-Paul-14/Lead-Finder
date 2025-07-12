@@ -10,7 +10,7 @@ import { siteConfig } from "@/app/config/site"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ActiveThemeProvider } from "@/components/active-theme"
-import { Providers } from "./providers"
+
 
 const META_THEME_COLORS = {
   light: "#ffffff",
@@ -105,7 +105,7 @@ export default async function RootLayout({
           fontVariables
         )}
       >
-        <Providers>
+        
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -118,7 +118,7 @@ export default async function RootLayout({
             {/* <Analytics /> */}
           </ActiveThemeProvider>
         </ThemeProvider>
-        </Providers>
+        
       </body>
     </html>
   )
