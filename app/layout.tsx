@@ -10,6 +10,7 @@ import { siteConfig } from "@/app/config/site"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { ActiveThemeProvider } from "@/components/active-theme"
+import { Providers } from "@/components/Providers"
 
 
 const META_THEME_COLORS = {
@@ -105,8 +106,10 @@ export default async function RootLayout({
           fontVariables
         )}
       >
-        
-        <ThemeProvider
+        <Providers>
+  {children}
+</Providers>
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -115,9 +118,9 @@ export default async function RootLayout({
           <ActiveThemeProvider initialTheme={activeThemeValue}>
             {children}
             <Toaster />
-            {/* <Analytics /> */}
+            
           </ActiveThemeProvider>
-        </ThemeProvider>
+        </ThemeProvider> */}
         
       </body>
     </html>
