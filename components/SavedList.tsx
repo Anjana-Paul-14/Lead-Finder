@@ -3,17 +3,6 @@ import React,{ useEffect, useState } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 import { Place } from '@/types/place';
 
-const containerStyle = {
-  width: "100%",
-  height: "60vh",
-};
-// type SavedPlace = {
-//   name: string;
-//   vicinity: string;
-//   rating: number;
-//   website: string;
-//   place_id: string;
-// };
 
 
 export const SavedList = () => {

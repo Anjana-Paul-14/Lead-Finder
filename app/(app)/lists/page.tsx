@@ -1,5 +1,5 @@
 import { SavedList } from '@/components/SavedList'
-import { ComponentWrapper } from "@/components/component-wrapper"
+
 import React from 'react'
 
 export default function ListPage() {
