@@ -20,6 +20,8 @@ const UserSchema = new mongoose.Schema ({
     name: String,
     vicinity: String,
     place_id: String,
+    rating: Number,
+    website: String,
     _id: false
   }
 ]
