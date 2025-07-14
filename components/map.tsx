@@ -129,7 +129,29 @@ const totalPages = Math.ceil(places.length / itemsPerPage);
     currentPage * itemsPerPage
   );
 
-const handleSaveAllPlaces = async () => {};
+const handleSaveAllPlaces = async () => {
+  try {
+    const res = await fetch('/api/user/save-place', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ places }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      console.error("Failed to save places:", data.message);
+      return;
+    }
+
+    console.log("Places saved successfully");
+  } catch (err) {
+    console.error("Failed to save places:", err);
+  }
+};
+
+
 
   return (
     <div className="flex flex-col items-center w-full h-full border-4 px-4 ">
