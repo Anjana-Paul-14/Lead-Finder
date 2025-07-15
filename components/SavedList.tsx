@@ -49,7 +49,7 @@ export const SavedList = () => {
 
   return (
          <div className="flex flex-col items-center w-full h-full px-4">
-      <h1 className="text-xl font-bold my-4">Saved Places</h1>
+      <h1 className="text-xl font-bold my-4">Saved Lists</h1>
       <div className="w-full px-4 overflow-x-auto">
         <div className="w-[400px] sm:w-full">
           <Table>
