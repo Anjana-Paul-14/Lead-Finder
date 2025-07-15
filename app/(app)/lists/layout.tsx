@@ -9,7 +9,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/registry/new-york-v4/ui/sidebar"
-import { CreditButton } from "@/components/credit-button"
 import { Profile } from "@/components/profile"
 
 export default async function AppLayout({
@@ -35,10 +34,10 @@ export default async function AppLayout({
             <NavHeader />
             <div className="ml-auto flex items-center gap-2 border-4">
               <div>
-              {/* <CreditButton/> */}
+             
               </div>
               <ModeSwitcher />
-              {/* //eee */}
+              
               <Profile/>
             </div>
           </div>
