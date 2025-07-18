@@ -1,4 +1,4 @@
-
+// apps/v4/types/place.ts
 export interface Place {
   name: string;
   vicinity: string;
