@@ -32,7 +32,7 @@ export function NavHeader() {
           </NavigationMenuLink>
         </NavigationMenuItem> */}
         {/* for  */}
-        git
+        {/* git */}
         commit
         this 
         is 
