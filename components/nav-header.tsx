@@ -35,7 +35,7 @@ export function NavHeader() {
         {/* git */}
         {/* commit */}
         {/* this  */}
-        is 
+        {/* is  */}
         for 
         git 
         commit
