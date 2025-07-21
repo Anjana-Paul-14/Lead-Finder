@@ -42,7 +42,7 @@ export function NavHeader() {
         {/* green */}
         {/* color */}
         {/* to  */}
-        show
+        {/* show */}
         consistency
       </NavigationMenuList>
     </NavigationMenu>
