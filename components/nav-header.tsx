@@ -40,7 +40,7 @@ export function NavHeader() {
         {/* git  */}
         {/* commit */}
         {/* green */}
-        color
+        {/* color */}
         to 
         show
         consistency
