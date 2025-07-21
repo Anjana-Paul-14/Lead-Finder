@@ -39,7 +39,7 @@ export function NavHeader() {
         {/* for  */}
         {/* git  */}
         {/* commit */}
-        green
+        {/* green */}
         color
         to 
         show
