@@ -36,7 +36,7 @@ export function NavHeader() {
         {/* commit */}
         {/* this  */}
         {/* is  */}
-        {/* for  */}
+        for 
         git 
         commit
         green
