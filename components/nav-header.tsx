@@ -43,7 +43,7 @@ export function NavHeader() {
         {/* color */}
         {/* to  */}
         {/* show */}
-        {/* consistency */}
+        consistency
       </NavigationMenuList>
     </NavigationMenu>
   )
