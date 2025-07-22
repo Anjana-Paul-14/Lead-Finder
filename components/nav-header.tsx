@@ -31,19 +31,7 @@ export function NavHeader() {
             <Link href="/forms">Forms</Link>
           </NavigationMenuLink>
         </NavigationMenuItem> */}
-        for 
-        git
-        commit
-        this 
-        is 
-        for 
-        git 
-        commit
-        green
-        color
-        to 
-        show
-        consistency
+        
       </NavigationMenuList>
     </NavigationMenu>
   )
