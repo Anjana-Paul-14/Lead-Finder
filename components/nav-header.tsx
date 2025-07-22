@@ -41,8 +41,8 @@ export function NavHeader() {
         {/* commit */}
         {/* green */}
         {/* color */}
-        {/* to  */}
-        {/* show */}
+        to 
+        show
         consistency
       </NavigationMenuList>
     </NavigationMenu>
