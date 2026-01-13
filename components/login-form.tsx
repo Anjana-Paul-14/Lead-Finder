@@ -91,7 +91,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       } else {
         setError(response.data.error || "Login failed")
       }
-    } // Replace the catch block in handleSubmit
+    } 
+    // Replace the catch block in handleSubmit
 catch (error) {
   console.error("Signup error:", error);
   if (axios.isAxiosError(error) && error.response) {
