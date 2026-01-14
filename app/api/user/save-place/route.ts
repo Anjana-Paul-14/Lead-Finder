@@ -45,8 +45,24 @@ export async function POST(req: NextRequest) {
     }
 
     // user.savedPlaces.push(...places);
-    user.savedPlaces.push(...placesToSave);
-    await user.save();
+    // user.savedPlaces.push(...placesToSave);
+    // user.savedPlaces.unshift(...placesToSave);
+    // await user.save();
+    // Prevent duplicates using place_id
+const existingPlaceIds = new Set(
+  user.savedPlaces.map((p: any) => p.place_id)
+);
+
+// Filter only new places
+const uniqueNewPlaces = placesToSave.filter(
+  (place) => !existingPlaceIds.has(place.place_id)
+);
+
+// Add newest unique places to the top
+user.savedPlaces.unshift(...uniqueNewPlaces);
+
+await user.save();
+
 
     return NextResponse.json({ message: 'Places saved successfully' });
   } catch (err) {
