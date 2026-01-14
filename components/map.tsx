@@ -30,7 +30,7 @@ export const Map = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [places, setPlaces] = useState<PlaceDetails[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  // const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
 
 
 
