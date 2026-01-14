@@ -176,6 +176,7 @@ const handleSaveAllPlaces = async () => {
     });
 
   } catch (err) {
+    console.error('Save failed:', err);
     Swal.fire({
       icon: 'error',
       title: 'Something went wrong',

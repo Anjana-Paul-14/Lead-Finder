@@ -50,7 +50,8 @@ export async function POST(req: NextRequest) {
     // await user.save();
     // Prevent duplicates using place_id
 const existingPlaceIds = new Set(
-  user.savedPlaces.map((p: any) => p.place_id)
+  // user.savedPlaces.map((p: any) => p.place_id)
+  user.savedPlaces.map((p: Place) => p.place_id)
 );
 
 // Filter only new places
