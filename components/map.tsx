@@ -7,6 +7,7 @@ import { Button } from '@/registry/new-york-v4/ui/button';
 import { useCredits } from '@/components/credit-context';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/registry/new-york-v4/ui/table';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/registry/new-york-v4/ui/pagination';
+import Swal from 'sweetalert2';
 
 const containerStyle = {
   width: "100%",
@@ -29,6 +30,8 @@ export const Map = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [places, setPlaces] = useState<PlaceDetails[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+
 
 
 
@@ -131,6 +134,9 @@ const totalPages = Math.ceil(places.length / itemsPerPage);
 
 const handleSaveAllPlaces = async () => {
   try {
+
+    // setSaveSuccess(null);
+
     const res = await fetch('/api/user/save-place', {
       method: 'POST',
       headers: {
@@ -139,15 +145,42 @@ const handleSaveAllPlaces = async () => {
       body: JSON.stringify({ places }),
     });
 
-    if (!res.ok) {
+  //   if (!res.ok) {
+  //     const data = await res.json();
+  //     console.error("Failed to save places:", data.message);
+  //     return;
+  //   }
+
+  //   setSaveSuccess('Saved successfully. Please check List tab to view.');
+  //    setTimeout(() => setSaveSuccess(null), 3000);
+  //   console.log("Places saved successfully");
+  // } catch (err) {
+  //   console.error("Failed to save places:", err);
+  // }
+  if (!res.ok) {
       const data = await res.json();
-      console.error("Failed to save places:", data.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: data.message || 'Failed to save places',
+      });
       return;
     }
 
-    console.log("Places saved successfully");
+    Swal.fire({
+      icon: 'success',
+      title: 'Saved!',
+      text: 'Saved successfully. Please check the List tab to view.',
+      timer: 2500,
+      showConfirmButton: false,
+    });
+
   } catch (err) {
-    console.error("Failed to save places:", err);
+    Swal.fire({
+      icon: 'error',
+      title: 'Something went wrong',
+      text: 'Please try again later.',
+    });
   }
 };
 
@@ -221,6 +254,11 @@ const handleSaveAllPlaces = async () => {
     <Button onClick={handleSaveAllPlaces}>
       Save All Places
     </Button>
+    {/* {saveSuccess && (
+  <p className="mt-2 text-green-600 text-sm font-medium">
+    {saveSuccess}
+  </p>
+)} */}
   </div>
           {/* Pagination Section */}
           <Pagination className="mt-4">
