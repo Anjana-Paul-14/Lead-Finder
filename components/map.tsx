@@ -214,21 +214,28 @@ const handleSaveAllPlaces = async () => {
       </div>
 
       {places.length > 0 &&  (
-        <div className="w-full px-4 overflow-x-auto">
-           <div className="w-[400px] sm:w-full">
-          <Table className="">
+        // <div className="w-full px-4 overflow-x-auto">
+        //    <div className="w-[400px] sm:w-full">
+        <div className="w-full max-w-7xl mt-8">
+    <div className="rounded-md border overflow-hidden">
+          {/* <Table className=""> */}
+          <Table className="table-fixed w-full">
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
+                {/* <TableHead>Name</TableHead>
                 <TableHead>Address</TableHead>
                 <TableHead>Rating</TableHead>
-                <TableHead>Website Status</TableHead>
+                <TableHead>Website Status</TableHead> */}
+                <TableHead className="w-[30%]">Name</TableHead>
+            <TableHead className="w-[40%]">Address</TableHead>
+            <TableHead className="w-[10%]">Rating</TableHead>
+            <TableHead className="w-[20%]">Website Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {paginatedPlaces.map((place) => (
                 <TableRow key={place.place_id}>
-                  <TableCell>{place.name}</TableCell>
+                  {/* <TableCell>{place.name}</TableCell>
                   <TableCell>{place.vicinity}</TableCell>
                   <TableCell>{place.rating}</TableCell>
                   <TableCell>
@@ -244,7 +251,17 @@ const handleSaveAllPlaces = async () => {
                     ) : (
                       'No Website'
                     )}
-                  </TableCell>
+                  </TableCell> */}
+                  <TableCell className="font-medium truncate">{place.name}</TableCell>
+              <TableCell className="truncate">{place.vicinity}</TableCell>
+              <TableCell>{place.rating}</TableCell>
+              <TableCell className="truncate">
+                {place.website !== 'No Website' ? (
+                  <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                    Visit Website
+                  </a>
+                ) : 'No Website'}
+              </TableCell>
                 </TableRow>
               ))}
             </TableBody>
