@@ -64,7 +64,8 @@ export const SavedList = () => {
             <TableBody>
               {savedPlaces.length > 0 ? (
                 savedPlaces.map((place) => (
-                  <TableRow key={place.place_id}>
+                  // <TableRow key={place.place_id}>
+                  <TableRow key={place._id}>
                     <TableCell>{place.name}</TableCell>
                     <TableCell>{place.vicinity}</TableCell>
                     <TableCell>{place.rating || 'N/A'}</TableCell>
